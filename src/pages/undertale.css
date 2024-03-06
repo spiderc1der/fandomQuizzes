@@ -17,6 +17,7 @@
 
 .undertale {
   background-color: black;
+  min-height: 100vh;
   cursor: url("src/assets/red_SOUL_sprite.png"), auto;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */

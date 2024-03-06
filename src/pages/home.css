@@ -1,4 +1,14 @@
+.home{
+    background-color: black;
+    min-height: 100vh
+}
+
+.home .title, .pageName{
+    font-family:Arial, Helvetica, sans-serif;
+}
+
 .home .title{
+    margin: 2%;
     color: white;
     text-align: center;
 }
