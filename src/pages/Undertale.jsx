@@ -8,6 +8,7 @@ export function Undertale() {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const selectSFX = new Audio("src/sounds/snd_select.wav");
 
   const questions = [
     {
@@ -60,6 +61,10 @@ export function Undertale() {
       document.getElementById("homeButton").hidden = true;
       setShowResults(true);
     }
+
+    // play 'select' sound effect 
+    selectSFX.play();
+    selectSFX.currentTime = 0;
 
     // update the question progress bar
     var percentRight = ((currentQuestion + 1) / questions.length) * 100;
