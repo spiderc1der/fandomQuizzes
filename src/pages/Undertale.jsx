@@ -70,6 +70,11 @@ export function Undertale() {
       incorrectSFX.play();
       incorrectSFX.currentTime = 0;
 
+
+      startShakeAnim();
+      setTimeout(endShakeAnim, 250);
+
+
       setTotal(totalRight - 1);
     }
 
@@ -126,6 +131,18 @@ export function Undertale() {
     setTimeout(endFadeAnim, 6200);
   }
 
+  function startShakeAnim(){
+    const shakeElement = document.querySelector("body");
+    shakeElement.classList.add("shakeBox"); 
+  }
+
+  function endShakeAnim(){
+    document.body.className = "";
+
+  }
+
+
+
   function getResult(percentage) {
     if (percentage == 100) {
       return "Congratulations! A perfect score! You're a certified Undertale MASTER™!";
@@ -150,7 +167,7 @@ export function Undertale() {
 
   return (
     <>
-      <div className="undertale">
+      <div id = "UT" className="undertale">
         <h1>Undertale Trivia Quiz</h1>
 
         {/* current question */}
