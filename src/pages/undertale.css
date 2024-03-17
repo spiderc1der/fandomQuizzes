@@ -20,11 +20,8 @@
   min-height: 100vh;
   cursor: url("src/assets/red_SOUL_sprite.png"), auto;
   -webkit-user-select: none;
-  -ms-user-select: none; 
+  -ms-user-select: none;
   user-select: none;
-
-
-  
 }
 
 .undertale h1 {
@@ -110,10 +107,11 @@ h3 {
 }
 
 .undertale .results {
+  position: relative;
   text-align: center;
   margin: 0 auto;
   width: 400px;
-  height: 200px;
+  height: 300px;
   border-style: solid;
   border-color: white;
   border-width: 6px;
@@ -152,7 +150,7 @@ h3 {
   margin-right: 20px;
   width: 100px;
   height: 20px;
-  background-image: linear-gradient(red 100%, red 100%);
+  background-image: linear-gradient(yellow 100%, yellow 100%);
   display: inline;
 }
 
@@ -172,4 +170,32 @@ h3 {
   border-color: #e1d300;
   color: #e1d300;
   cursor: url("src/assets/red_SOUL_sprite.png"), auto;
+}
+
+#resetIMG {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.fade-in {
+  animation: fadeIn 6s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cursorHide {
+  cursor: none;
 }
