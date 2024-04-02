@@ -37,8 +37,8 @@ export function Undertale() {
     {
       question: "What is Toriel's favorite food?",
       answers: [
-        { id: 0, text: "Butterscotch Pie", correct: false },
         { id: 1, text: "Snail Pie", correct: true },
+        { id: 0, text: "Butterscotch Pie", correct: false },
         { id: 2, text: "Cinnamon Bunny", correct: false },
         { id: 3, text: "Bug Pie", correct: false },
       ],
@@ -46,12 +46,201 @@ export function Undertale() {
     {
       question: "Which of the following is NOT one of Napstablook's CDs?",
       answers: [
+        { id: 3, text: "Spookstep", correct: true },
         { id: 0, text: "Spooktune", correct: false },
         { id: 1, text: "Ghouliday", correct: false },
         { id: 2, text: "Spookwave", correct: false },
-        { id: 3, text: "Spookstep", correct: true },
       ],
     },
+    {
+      question: "Which of the following is an NPC in hotland?",
+      answers: [
+        { id: 0, text: "Lava Sparksman", correct: false },
+        { id: 1, text: "Magma Hotsguy", correct: false },
+        { id: 2, text: "Heats Flamesman", correct: true },
+        { id: 3, text: "Heat Flameman", correct: false },
+      ],
+    },
+    {
+      question: "Who did Undyne follow around as a kid?",
+      answers: [
+        { id: 0, text: "Gaster", correct: false },
+        { id: 1, text: "Asgore", correct: false },
+        { id: 2, text: "Alphys", correct: false },
+        { id: 3, text: "Gerson", correct: true },
+      ],
+    },
+    {
+      question: "In which area can you find the Elder Puzzler?",
+      answers: [
+        { id: 0, text: "Waterfall", correct: true },
+        { id: 1, text: "Snowdin", correct: false },
+        { id: 2, text: "Ruins", correct: false },
+        { id: 3, text: "Hotland", correct: false },
+      ],
+    },
+    {
+      question: "What is Alphys' favorite game?",
+      answers: [
+        { id: 0, text: "Tokyo Mew Mew", correct: false },
+        { id: 1, text: "Mew Mew Kissy Cutie", correct: true },
+        { id: 2, text: "Hello Mew Mew", correct: false },
+        { id: 3, text: "Kissy Cutie 2", correct: false },
+      ],
+    },
+    {
+      question: "What can Papyrus be seen driving in the credits of True Pacifist?",
+      answers: [
+        { id: 0, text: "A tricycle", correct: false },
+        { id: 1, text: "A truck", correct: false },
+        { id: 2, text: "A convertible", correct: true },
+        { id: 3, text: "A vespa", correct: false },
+      ],
+    },
+    {
+      question: "Who created Flowey?",
+      answers: [
+        { id: 0, text: "Gaster", correct: false },
+        { id: 1, text: "Chara", correct: false },
+        { id: 2, text: "Asgore", correct: false },
+        { id: 3, text: "Alphys", correct: true },
+      ],
+    },
+    {
+      question: "Which soul traits are represented by the flashing colors of Sans' left eye?",
+      answers: [
+        { id: 0, text: "Justice, Integrity", correct: false },
+        { id: 1, text: "Bravery, Patience", correct: false },
+        { id: 2, text: "Integrity, Patience", correct: false },
+        { id: 3, text: "Patience, Justice", correct: true },
+      ],
+    },
+    {
+      question: "How many fightable Kickstarter-backer custom NPCs are in the game?",
+      answers: [
+        { id: 0, text: "3", correct: true },
+        { id: 1, text: "1", correct: false },
+        { id: 2, text: "2", correct: false },
+        { id: 3, text: "6", correct: false },
+      ],
+    },
+    {
+      question: "How many members of the royal guard are dogs?",
+      answers: [
+        { id: 0, text: "2", correct: false },
+        { id: 1, text: "4", correct: false },
+        { id: 2, text: "5", correct: true },
+        { id: 3, text: "3", correct: false },
+      ],
+    },
+    {
+      question: "What can you find in Mettaton's house?",
+      answers: [
+        { id: 0, text: "Scripts", correct: false },
+        { id: 1, text: "Evil plans", correct: false },
+        { id: 2, text: "Costumes", correct: false },
+        { id: 3, text: "Diaries", correct: true },
+      ],
+    },
+    {
+      question: "What's the limit of hotdogs that Sans will stack on the protagonist's head?",
+      answers: [
+        { id: 0, text: "25", correct: false },
+        { id: 1, text: "30", correct: true },
+        { id: 2, text: "31", correct: false },
+        { id: 3, text: "10", correct: false },
+      ],
+    },
+    {
+      question: "What does Papyrus refer to his outfit as?",
+      answers: [
+        { id: 0, text: "\"Battle body\"", correct: true },
+        { id: 1, text: "\"Costume\"", correct: false },
+        { id: 2, text: "\"Battle outfit\"", correct: false },
+        { id: 3, text: "\"Fighting figure\"", correct: false },
+      ],
+    },
+    {
+      question: "Which NPC can be found in the MTT Resort Restaurant?",
+      answers: [
+        { id: 0, text: "Aaron", correct: false },
+        { id: 1, text: "Temmie", correct: false },
+        { id: 2, text: "Snowdrake's Father", correct: true },
+        { id: 3, text: "Faun", correct: false },
+      ],
+    },
+    {
+      question: "Where is Chara buried?",
+      answers: [
+        { id: 0, text: "Waterfall", correct: false },
+        { id: 1, text: "Ruins flowerbed", correct: true },
+        { id: 2, text: "New Home", correct: false },
+        { id: 3, text: "In the royal garden", correct: false },
+      ],
+    },
+    {
+      question: "Which of the following is said by the River Person? \"Tra la la...\"",
+      answers: [
+        { id: 0, text: "\"... Tri li li. Tre le le.\"", correct: true },
+        { id: 1, text: "\"... Remember to SAVE.\"", correct: false },
+        { id: 2, text: "\"... Hmm?\"", correct: false },
+        { id: 3, text: "\"... Careful.\"", correct: false },
+      ],
+    },
+    {
+      question: "Who can you see if you backtrack through rooms?",
+      answers: [
+        { id: 0, text: "Flowey", correct: true },
+        { id: 1, text: "Sans", correct: false },
+        { id: 2, text: "Toriel", correct: false },
+        { id: 3, text: "Undyne", correct: false },
+      ],
+    },
+    {
+      question: "What did Chara and Asriel feed Asgore?",
+      answers: [
+        { id: 0, text: "Daisies", correct: false },
+        { id: 1, text: "Daffodils", correct: false },
+        { id: 2, text: "Buttercups", correct: true },
+        { id: 3, text: "Golden Flowers", correct: false },
+      ],
+    },
+    {
+      question: "What does Temmie get a degree in if you pay for her college?",
+      answers: [
+        { id: 0, text: "Tem History", correct: false },
+        { id: 1, text: "Tem Studies", correct: true },
+        { id: 2, text: "Tem Business", correct: false },
+        { id: 3, text: "Economics", correct: false },
+      ],
+    },
+    {
+      question: "What do the \"punch cards\" you get from Nice Cream Guy say?",
+      answers: [
+        { id: 0, text: "\"Thanks!\"", correct: false },
+        { id: 1, text: "\":)\"", correct: false },
+        { id: 2, text: "\"please... please come back...\"", correct: true },
+        { id: 3, text: "\"1 free nice cream\"", correct: false },
+      ],
+    },
+    {
+      question: "Which of the following is NOT one of the amalgamates in True Lab?",
+      answers: [
+        { id: 0, text: "Eraserhead", correct: true },
+        { id: 1, text: "Endogeny", correct: false },
+        { id: 2, text: "Reaper Bird", correct: false },
+        { id: 3, text: "Lemon Bread", correct: false },
+      ],
+    },
+    {
+      question: "What's the description of the item, \"Real Knife\"?",
+      answers: [
+        { id: 0, text: "\"Like it sounds.\"", correct: false },
+        { id: 1, text: "\"Here we are!\"", correct: true },
+        { id: 2, text: "\"Sharp.\"", correct: false },
+        { id: 3, text: "\"Made of steel.\"", correct: false },
+      ],
+    }
   ];
 
   const [totalRight, setTotal] = useState(questions.length);
@@ -70,10 +259,8 @@ export function Undertale() {
       incorrectSFX.play();
       incorrectSFX.currentTime = 0;
 
-
       startShakeAnim();
       setTimeout(endShakeAnim, 250);
-
 
       setTotal(totalRight - 1);
     }
@@ -131,35 +318,32 @@ export function Undertale() {
     setTimeout(endFadeAnim, 6200);
   }
 
-  function startShakeAnim(){
+  function startShakeAnim() {
     const shakeElement = document.querySelector("body");
-    shakeElement.classList.add("shakeBox"); 
+    shakeElement.classList.add("shakeBox");
   }
 
-  function endShakeAnim(){
+  function endShakeAnim() {
     document.body.className = "";
-
   }
-
-
 
   function getResult(percentage) {
     if (percentage == 100) {
-      return "Congratulations! A perfect score! You're a certified Undertale MASTER™!";
+      return "Congratulations! A perfect score! You're a certified Undertale MASTER!";
     } else if (percentage >= 80 && percentage <= 99) {
-      return "Wow! You really know your stuff! You're a certified Undertale Expert™!";
+      return "Wow! You really know your stuff! You're a certified Undertale Expert!";
     } else if (percentage >= 60 && percentage <= 79) {
-      return "Not bad! You're an Undertale Authority™!";
+      return "Not bad! You're an Undertale Apprentice!";
     } else if (percentage >= 40 && percentage <= 59) {
-      return "Pretty good! You're an Undertale Apprentice!";
+      return "Knowing that you can improve your score... It fills you with determination.";
     } else if (percentage >= 20 && percentage <= 39) {
-      return "You're an Undertale amateur!";
+      return "Knowing that you can improve your score... It fills you with determination.";
     } else if (percentage >= 10 && percentage <= 19) {
-      return "You still have much to learn!";
+      return "Knowing that you can improve your score... It fills you with determination.";
     } else if (percentage >= 1 && percentage <= 9) {
-      return "You tried!";
+      return "Knowing that you can improve your score... It fills you with determination.";
     } else if (percentage == 0) {
-      return "Oh! Wow!";
+      return "Knowing that you can improve your score... It fills you with determination.";
     } else {
       return "";
     }
@@ -167,7 +351,7 @@ export function Undertale() {
 
   return (
     <>
-      <div id = "UT" className="undertale">
+      <div id="UT" className="undertale">
         <h1>Undertale Trivia Quiz</h1>
 
         {/* current question */}
@@ -175,6 +359,10 @@ export function Undertale() {
           {currentQuestion + 1}/{questions.length}.{" "}
           {questions[currentQuestion].question}
         </h2>
+
+        {/*<div className="UTpic">
+          <img width="250" height="150"></img>
+        </div>*/}
 
         {/* show either the results or the game */}
 
@@ -194,7 +382,7 @@ export function Undertale() {
 
               <h2 className="finalTitle">Final Results</h2>
               <h3 className="numberCorrect">
-                {score} out of {questions.length} correct 
+                {score} out of {questions.length} correct
                 <br />
                 {(score / questions.length) * 100}%
                 {/* print message + play sfx depending on score */}
