@@ -2,14 +2,13 @@ import { Link, NavLink } from "react-router-dom";
 
 import "./home.css";
 
-export function Home() {
-  // home page
-  return (
-    <>
-      <div className="home">
+export function Books() {
+    return (
+        <div className="home">
         <div className="background">
-          <h2 className="title">Fandom Quizzes</h2>
+        <h2 className="title">Fandom Quizzes</h2>
           <h3 className="pageName">Home</h3>
+          
           <div className="quizzes">
             <div className="navbar">
               <div className="container">
@@ -21,7 +20,7 @@ export function Home() {
                 <div className="elements">
                   <ul>
                     <li>
-                      <NavLink to = "/gameQuizzes" style={{color: 'black', textDecoration: 'none'}}>Games</NavLink> <NavLink to = "/movieQuizzes" style={{color: 'black', textDecoration: 'none'}}>Movies</NavLink> <NavLink to = "/bookQuizzes"  style={{color: 'black', textDecoration: 'none'}}>Books</NavLink> <NavLink to = "/showQuizzes" style={{color: 'black', textDecoration: 'none'}}>Shows</NavLink>
+                    <NavLink to = "/gameQuizzes" style={{color: 'black', textDecoration: 'none'}}>Games</NavLink> <NavLink to = "/movieQuizzes" style={{color: 'black', textDecoration: 'none'}}>Movies</NavLink> <NavLink to = "/bookQuizzes"  style={{color: 'black', textDecoration: 'none'}}>Books</NavLink> <NavLink to = "/showQuizzes" style={{color: 'black', textDecoration: 'none'}}>Shows</NavLink>
                     </li>
                   </ul>
                 </div>
@@ -30,16 +29,13 @@ export function Home() {
 
              {/* Quizzes are listed here */}
             <div className="main">
-              <Link to="/undertale">
-                <button className="quizButton" id= "UTButton">Undertale Trivia</button>
-              </Link>
-              rest of the quizzes here
+              book quizzes go here
+              
             </div>
           </div>
           
 
         </div>
       </div>
-    </>
-  );
+    );
 }

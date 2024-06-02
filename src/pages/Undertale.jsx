@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+import $ from "canvas-confetti";
+
 import "./undertale.css";
 import "../index.css";
 
@@ -80,7 +82,7 @@ export function Undertale() {
       ],
     },
     {
-      question: "What is Alphys' favorite game?",
+      question: "What is Alphys' favorite show?",
       answers: [
         { id: 0, text: "Tokyo Mew Mew", correct: false },
         { id: 1, text: "Mew Mew Kissy Cutie", correct: true },
@@ -327,6 +329,7 @@ export function Undertale() {
     document.body.className = "";
   }
 
+
   function getResult(percentage) {
     if (percentage == 100) {
       return "Congratulations! A perfect score! You're a certified Undertale MASTER!";
@@ -343,7 +346,7 @@ export function Undertale() {
     } else if (percentage >= 1 && percentage <= 9) {
       return "Knowing that you can improve your score... It fills you with determination.";
     } else if (percentage == 0) {
-      return "Knowing that you can improve your score... It fills you with determination.";
+      return "Oh!";
     } else {
       return "";
     }
@@ -381,7 +384,11 @@ export function Undertale() {
               </div>
 
               <h2 className="finalTitle">Final Results</h2>
+
+              <script src="src/scripts/confetti.js"></script>
+
               <h3 className="numberCorrect">
+                
                 {score} out of {questions.length} correct
                 <br />
                 {(score / questions.length) * 100}%
@@ -389,6 +396,11 @@ export function Undertale() {
                 <br />
                 <br />
                 {getResult((score / questions.length) * 100)}
+                
+                <script>
+                  alert()
+                </script>
+
                 {console.log((score / questions.length) * 100)}
               </h3>
               <button className="restart-btn" onClick={() => resetAnim()}>
