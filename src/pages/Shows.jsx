@@ -29,8 +29,8 @@ export function Shows() {
 
              {/* Quizzes are listed here */}
             <div className="main">
-              show quizzes go here
               
+              {/* show quizzes go here */}
             </div>
           </div>
           

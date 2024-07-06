@@ -1,5 +1,22 @@
+@font-face {
+    font-family: "8bitoperator JVE";
+    src: url("8bitoperator-JVE.woff2") format("woff2"),
+      url("8bitoperator-JVE.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+
+  @font-face {
+    font-family: "Minecraftia";
+    src: url("Minecraftia-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
 .home{
-    background-color: black;
+    background-color: #44CF6C;
     min-height: 100vh
 }
 
@@ -8,7 +25,7 @@
 }
 
 .home .title{
-    margin: 1%;
+    margin: 0%;
     color: white;
     text-align: center;
 }
@@ -25,24 +42,41 @@
     margin-right: 5%;
     justify-content: center;
     align-items: left;
-    border-radius: 8px;
+   
     
 }
 
 .quizzes .quizButton{
     background-color: black;
-    border-color: black;
-    width: 100px;
-    height: 100px;
+    border: none;
     margin: 5%;
-    border-radius: 8px;
     color: white;
     
 }
 
 .quizzes #UTButton{
-    background-color: red;
-    border-color: red;
+    background-image: url("src/assets/ut/bigSoul.png");
+    background-color: transparent;
+    height: 100px;
+    width: 100px;
+    background-size: 100%;
+    font-family: "8bitoperator JVE";
+    letter-spacing: 1px;
+    font-size: 17px;
+    font-weight: normal;
+    
+}
+
+.quizzes #MCButton{
+    background-image: url("src/assets/mc/grass_block.png");
+    background-color: transparent;
+    height: 100px;
+    width: 100px;
+    background-size: 100%;
+    font-family: "Minecraftia";
+    letter-spacing: 1px;
+    font-size: 11px;
+    font-weight: normal;
 }
 
 .container{
@@ -57,14 +91,14 @@
 
 .navbar {
     height: 60px;
-    background-color: #fef7e5;
+    background-color: #A9FDAC;
     position: relative;
   }
 
 .main {   
     -ms-flex: 70%;
     flex: 70%;
-    background-color: #fffaf0;
+    background-color: #F1FFE7;
     padding-top: 20px;
     padding-left: 20px;
     padding-bottom: 350px;

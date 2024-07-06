@@ -29,8 +29,8 @@ export function Books() {
 
              {/* Quizzes are listed here */}
             <div className="main">
-              book quizzes go here
               
+              {/* book quizzes go here */}
             </div>
           </div>
           

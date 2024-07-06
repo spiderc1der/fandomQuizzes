@@ -9,6 +9,7 @@ import { Shows } from './pages/Shows'
 import { Undertale } from './pages/Undertale'
 
 import './App.css'
+import { Minecraft } from './pages/Minecraft'
 
 function App() {
  
@@ -16,11 +17,13 @@ function App() {
     <Router>
       <Routes>
         <Route path ="/" element ={<Home/>}/>
-        <Route path ="/undertale" element ={<Undertale/>}/>
         <Route path = "/gameQuizzes" element = {<Games/>}></Route>
         <Route path = "/movieQuizzes" element = {<Movies/>}></Route>
         <Route path = "/bookQuizzes" element = {<Books/>}></Route>
         <Route path = "/showQuizzes" element = {<Shows/>}></Route>
+
+        <Route path ="/undertale" element = {<Undertale/>}/>
+        <Route path ="/minecraft" element = {<Minecraft/>}></Route>
 
       </Routes>
     </Router>

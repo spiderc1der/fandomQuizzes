@@ -15,15 +15,17 @@
   font-display: block;
 }
 
+/* main div */
 .undertale {
   background-color: black;
   min-height: 100vh;
-  cursor: url("src/assets/red_SOUL_sprite.png"), auto;
+  cursor: url("src/assets/ut/red_SOUL_sprite.png"), auto;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
 
+/* title */
 .undertale h1 {
   font-family: "8bitoperator JVE";
   color: white;
@@ -34,6 +36,13 @@
   font-weight: normal;
 }
 
+.undertale h2,
+h3 {
+  font-family: "8bitoperator JVE";
+  font-weight: normal;
+}
+
+/* question card details */
 .undertale .question-txt {
   font-family: "8bitoperator JVE";
   font-weight: normal;
@@ -53,20 +62,7 @@
   color: white;
 }
 
-.undertale .buttons {
-  margin-top: 7%;
-  margin-left: -3%;
-}
-
-.undertale .finalTitle {
-  font-size: 35px;
-  margin: 0;
-}
-
-.undertale .numberCorrect {
-  font-size: 25px;
-}
-
+/* list details */
 .undertale ul {
   margin: 0%;
   display: grid;
@@ -93,11 +89,69 @@
   color: #e1d300;
 }
 
-.undertale h2,
-h3 {
+/* button details */
+.undertale .buttons {
+  margin-top: 7%;
+  margin-left: -3%;
+}
+
+.undertale .home-btn {
+  width: 140px;
+  height: 60px;
+  color: #e67631;
+  background-color: black;
+  border: 4px solid #e67631;
+  font-size: 35px;
   font-family: "8bitoperator JVE";
   font-weight: normal;
 }
+
+
+.undertale .restart-btn {
+  width: 140px;
+  height: 60px;
+  color: #e67631;
+  font-size: 35px;
+  background-color: black;
+  border: 4px solid #e67631;
+  font-family: "8bitoperator JVE";
+  font-weight: normal;
+}
+
+.undertale .home-btn:hover,
+.restart-btn:hover {
+  border-color: #e1d300;
+  color: #e1d300;
+  cursor: url("src/assets/ut/red_SOUL_sprite.png"), auto;
+}
+
+.undertale .restart-btn {
+  width: 140px;
+  height: 60px;
+  color: #e67631;
+  font-size: 35px;
+  background-color: black;
+  border: 4px solid #e67631;
+  font-family: "8bitoperator JVE";
+  font-weight: normal;
+}
+
+.undertale .home-btn:hover,
+.restart-btn:hover {
+  border-color: #e1d300;
+  color: #e1d300;
+  cursor: url("src/assets/ut/red_SOUL_sprite.png"), auto;
+}
+
+.undertale .finalTitle {
+  font-size: 35px;
+  margin: 0;
+}
+
+.undertale .numberCorrect {
+  font-size: 25px;
+}
+
 
 .undertale .playerInfo {
   color: white;
@@ -121,16 +175,6 @@ h3 {
   font-weight: normal;
 }
 
-.undertale .home-btn {
-  width: 140px;
-  height: 60px;
-  color: #e67631;
-  background-color: black;
-  border: 4px solid #e67631;
-  font-size: 35px;
-  font-family: "8bitoperator JVE";
-  font-weight: normal;
-}
 
 .undertale .LOVE,
 .bottomQuestionTxt,
@@ -154,24 +198,7 @@ h3 {
   display: inline;
 }
 
-.undertale .restart-btn {
-  width: 140px;
-  height: 60px;
-  color: #e67631;
-  font-size: 35px;
-  background-color: black;
-  border: 4px solid #e67631;
-  font-family: "8bitoperator JVE";
-  font-weight: normal;
-}
-
-.undertale .home-btn:hover,
-.restart-btn:hover {
-  border-color: #e1d300;
-  color: #e1d300;
-  cursor: url("src/assets/red_SOUL_sprite.png"), auto;
-}
-
+/* animation details */
 #resetIMG {
   position: fixed;
   top: 0;
@@ -206,7 +233,3 @@ h3 {
   cursor: none;
 }
 
-.UTpic{
-  margin-bottom: 15px;
-  text-align: center;
-}

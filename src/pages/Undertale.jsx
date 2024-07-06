@@ -363,10 +363,6 @@ export function Undertale() {
           {questions[currentQuestion].question}
         </h2>
 
-        {/*<div className="UTpic">
-          <img width="250" height="150"></img>
-        </div>*/}
-
         {/* show either the results or the game */}
 
         {showResults ? (
@@ -377,7 +373,7 @@ export function Undertale() {
             <div className="results">
               <div id="fadeDIV">
                 <img
-                  src="src/assets/white.png"
+                  src="src/assets/ut/white.png"
                   id="resetIMG"
                   alt="reset-fade"
                 />

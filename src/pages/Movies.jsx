@@ -29,7 +29,8 @@ export function Movies() {
 
              {/* Quizzes are listed here */}
             <div className="main">
-              movie quizzes go here
+              
+              {/* movie quizzes go here */}
               
             </div>
           </div>

@@ -33,7 +33,11 @@ export function Home() {
               <Link to="/undertale">
                 <button className="quizButton" id= "UTButton">Undertale Trivia</button>
               </Link>
-              rest of the quizzes here
+              
+              <Link to="/minecraft">
+                <button className="quizButton" id= "MCButton">Minecraft Trivia</button>
+              </Link>
+              {/* rest of the quizzes here */}
             </div>
           </div>
           

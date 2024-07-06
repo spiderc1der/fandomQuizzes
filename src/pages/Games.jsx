@@ -32,6 +32,10 @@ export function Games() {
               <Link to="/undertale">
                 <button className="quizButton" id= "UTButton">Undertale Trivia</button>
               </Link>
+
+              <Link to="/minecraft">
+                <button className="quizButton" id= "MCButton">Minecraft Trivia</button>
+              </Link>
               
             </div>
           </div>

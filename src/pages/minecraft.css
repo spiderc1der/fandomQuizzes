@@ -1,0 +1,67 @@
+@font-face {
+    font-family: "Minecraftia";
+    src: url("Minecraftia-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+/* main div */
+.minecraft{
+    background-color: green;
+    min-height: 100vh;
+    min-width: 100vw;
+   
+}
+
+/* title */
+.minecraft h1{
+    font-family: "Minecraftia";
+    color: white;
+    text-align: center;
+    
+    font-weight: normal;
+}
+
+/* question card details */
+.minecraft .question-txt {
+    font-family: "Minecraftia";
+    font-weight: normal;
+    text-align: center;
+    
+}
+
+.minecraft .question-card {
+    font-family: "Minecraftia";
+    font-weight: normal;
+    color: white;
+}
+
+.minecraft ul {
+    list-style: none;
+    display: inline-block;
+
+
+    
+
+}
+
+
+
+
+.minecraft .option{
+    text-align: center;
+    font-weight: normal;
+    border-style: solid;
+    border-color: black;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 15px;
+
+    background: gray;
+
+    margin-bottom: 4px;
+    
+    
+}
+
