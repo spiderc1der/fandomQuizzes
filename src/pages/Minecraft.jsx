@@ -57,12 +57,7 @@ export function Minecraft() {
       <div id="MC" className="minecraft">
         <h1>Minecraft Trivia Quiz</h1>
 
-        {/* show question */}
-        <h2 id="qText" className="question-txt">
-          {currentQuestion + 1}/{questions.length}.{" "}
-          {questions[currentQuestion].question}
-        </h2>
-
+        
         {showResults ? (
           /* final results */
           <div className="results">
@@ -80,29 +75,41 @@ export function Minecraft() {
             </h3>
           </div>
         ) : (
-          /* question card */
-          <div className="question-card">
-            {/* possible answers  */}
-            <ul>
-              {questions[currentQuestion].answers.map((answer) => {
-                return (
-                  <li key={answer.id}>
-                    <h2
-                      className="option"
-                      onClick={() => answerPicked(answer.correct)}
-                    >
-                      {answer.text}
-                    </h2>
-                  </li>
-                );
-              })}
-            </ul>
+          <div className="window">
+            {/* question card */}
 
-            <Link to="/">
-              <button id="homeButton" className="home-btn">
-                HOME
-              </button>
-            </Link>
+          {/* show question */}
+          <h3 id="qText" className="question-txt">
+            {currentQuestion + 1}/{questions.length}.{" "}
+            {questions[currentQuestion].question}
+          </h3>
+
+
+            <div className="question-card">
+              {/* possible answers  */}
+              <ul>
+                {questions[currentQuestion].answers.map((answer) => {
+                  return (
+                    <li key={answer.id}>
+                      <h2
+                        className="option"
+                        onClick={() => answerPicked(answer.correct)}
+                      >
+                        {answer.text}
+                      </h2>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="buttons">
+                <Link to="/">
+                  <button id="homeButton" className="home-btn">
+                    HOME
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
         )}
       </div>

@@ -1,67 +1,115 @@
 @font-face {
-    font-family: "Minecraftia";
-    src: url("Minecraftia-Regular.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
+  font-family: "Minecraftia";
+  src: url("Minecraftia-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
 }
 
 /* main div */
-.minecraft{
-    background-color: green;
-    min-height: 100vh;
-    min-width: 100vw;
-   
+.minecraft {
+  background-color: green;
+  min-height: 100vh;
+  min-width: 100vw;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  
 }
 
 /* title */
-.minecraft h1{
-    font-family: "Minecraftia";
-    color: white;
-    text-align: center;
-    
-    font-weight: normal;
+.minecraft h1 {
+  font-family: "Minecraftia";
+  color: white;
+  text-align: center;
+
+  font-weight: normal;
 }
 
+.minecraft .window{
+  margin: auto;
+  width: 856px;
+  height: 519px;
+  background-image: url("src/assets/mc/fillerBG.png");
+}
 /* question card details */
 .minecraft .question-txt {
-    font-family: "Minecraftia";
-    font-weight: normal;
-    text-align: center;
-    
+  font-family: "Minecraftia";
+  font-weight: normal;
+  text-align: center;
 }
 
 .minecraft .question-card {
-    font-family: "Minecraftia";
-    font-weight: normal;
-    color: white;
+  font-family: "Minecraftia";
+  font-weight: normal;
+  color: white;
+
+  width: 500px;
+  height: 300px;
+  border: solid;
+  border-color: black;
+
+
+
+  display: grid;
+  
+  
+  margin: auto;
 }
 
 .minecraft ul {
-    list-style: none;
-    display: inline-block;
+
+ 
+  list-style: none;
 
 
-    
+  
+  
+  display: grid;
+  grid-auto-columns: 50px;
+  grid-auto-rows: 50px;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, 60px);
+  
+  column-gap: 200px;
+  row-gap: 25%;
+  list-style: none;
 
+
+ 
+  
 }
 
 
+.minecraft .option {
+
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  text-shadow: 3px 3px 0px #3e3e3e;
+  font-weight: normal;
+  border-style: solid;
+  border-color: black;
+  
+  margin-top: 1px;
+ 
 
 
-.minecraft .option{
-    text-align: center;
-    font-weight: normal;
-    border-style: solid;
-    border-color: black;
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 15px;
+  background: gray;
 
-    background: gray;
-
-    margin-bottom: 4px;
-    
-    
 }
 
+.minecraft li{
+
+  
+}
+
+.minecraft .option:hover{
+  background: lightskyblue;
+  border-color: white;
+  color: lightgoldenrodyellow;
+}
+
+.minecraft .buttons {
+  margin-top: 7%;
+
+}
