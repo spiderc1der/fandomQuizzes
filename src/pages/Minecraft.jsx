@@ -62,55 +62,38 @@ export function Minecraft() {
   return (
     <>
       <div id="MC" className="minecraft">
+        <br />
         <h1>Minecraft Trivia Quiz</h1>
 
-        {showResults ? (
-          /* final results */
-          <div className="results">
-            <h2 className="finalTitle">Final Results</h2>
+        <div className="window">
+          <br />
 
-            <h3 className="numberCorrect">
-              {score} out of {questions.length} correct
-              <br />
-              {(score / questions.length) * 100}%
-              {/* print message + play sfx depending on score */}
-              <br />
-              <br />
-              {getResult((score / questions.length) * 100)}
-              {console.log((score / questions.length) * 100)}
-            </h3>
-          </div>
-        ) : (
-          <div className="window">
-            {/* question card */}
+          <div className="menu-buttons">
+            {/* menu  */}
+            <ul>
+              <Link to="/minecraftQuiz" className="minecraft-link">
+                <h2 className="option">Start Quiz</h2>
+              </Link>
+              <h2 className="option"></h2>
+              <h2 className="option"></h2>
+            </ul>
 
-            {/* show question */}
-            <h3 id="qText" className="question-txt">
-              {currentQuestion + 1}/{questions.length}.{" "}
-              {questions[currentQuestion].question}
-            </h3>
-
-            <div className="menu-buttons">
-              {/* possible answers  */}
+            <div className="buttons">
               <ul>
-                <Link to="/minecraftQuiz" className="minecraft-link">
-                  <h2 className="option">Start Quiz</h2>
-                </Link>
-                <h2 className="option"></h2>
-                <h2 className="option"></h2>
+                <h2 className="lower-button">Options...</h2>
+                <h2 className="lower-button" onClick={() => close()}>
+                  Quit Quiz
+                </h2>
               </ul>
-
-              <div className="buttons">
-                <ul>
-                  <h2 className="lower-button">Options...</h2>
-                  <h2 className="lower-button" onClick={() => close()}>
-                    Quit Quiz
-                  </h2>
-                </ul>
-              </div>
             </div>
           </div>
-        )}
+          <div className="footers">
+            <ul>
+              <p className="version">Minecraft Quiz 1.0</p>
+              <p className="disclaimer">[DISCLAIMER]</p>
+            </ul>
+          </div>
+        </div>
       </div>
     </>
   );

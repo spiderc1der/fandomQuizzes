@@ -38,20 +38,25 @@
   font-family: "Minecraftia";
   font-weight: normal;
   color: white;
-
   width: 500px;
-  height: 300px;
-  border: solid;
-  border-color: black;
-
+  height: 200px;
+  /*border: solid;
+  border-color: black;*/
   margin-left: 13%;
   margin-right: 12%;
+}
+
+.minecraft .footers {
+  font-family: "Minecraftia";
+  font-weight: normal;
+  font-size: 16px;
+  color: white;
+  
 }
 
 .minecraft .menu-buttons ul {
   list-style: none;
   display: grid;
-  
   column-gap: 5px;
   list-style: none;
 }
@@ -62,9 +67,15 @@
   grid-auto-flow: column;
   grid-template-rows: repeat(1, 60px);
   column-gap: 5px;
-  list-style: none;
 }
 
+.minecraft .footers ul{
+  list-style: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(1, 60px);
+  column-gap: 20px;
+}
 
 .minecraft .option {
   text-align: center;
@@ -121,3 +132,4 @@
   background-color: transparent;
   text-decoration: none;
 }
+
