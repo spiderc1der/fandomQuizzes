@@ -33,9 +33,7 @@ export function Games() {
                 <button className="quizButton" id= "UTButton">Undertale Trivia</button>
               </Link>
 
-              <Link to="/minecraft">
-                <button className="quizButton" id= "MCButton">Minecraft Trivia</button>
-              </Link>
+              <button className="quizButton" id= "MCButton" onClick={() => openWindow()}>Minecraft Trivia</button>
               
             </div>
           </div>

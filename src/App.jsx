@@ -10,6 +10,7 @@ import { Undertale } from './pages/Undertale'
 
 import './App.css'
 import { Minecraft } from './pages/Minecraft'
+import { MinecraftPopup } from './pages/MinecraftPopup'
 
 function App() {
  
@@ -24,6 +25,7 @@ function App() {
 
         <Route path ="/undertale" element = {<Undertale/>}/>
         <Route path ="/minecraft" element = {<Minecraft/>}></Route>
+        <Route path ="/minecraftQuiz" element = {<MinecraftPopup/>}></Route>
 
       </Routes>
     </Router>

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import "./minecraft.css";
+import "./minecraftPopup.css";
 
-export function Minecraft() {
+export function MinecraftPopup() {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showResults, setShowResults] = useState(false);
@@ -20,32 +20,44 @@ export function Minecraft() {
         { id: 3, text: "2008", correct: false },
       ],
     },
+    {
+      question: "Which of these is not a real biome?",
+      answers: [
+        { id: 0, text: "Cherry Blossom", correct: false },
+        { id: 1, text: "Desert Forest", correct: true },
+        { id: 2, text: "Birch Forest", correct: false },
+        { id: 3, text: "Tundra", correct: false },
+      ],
+    },
   ];
 
   const [totalRight, setTotal] = useState(questions.length);
 
   const answerPicked = (correct) => {
     if (correct) {
-      // play sfx,
+      // play sfx
+
+      setScore(score + 1);
     } else {
+      // play "incorrect" sound effect
+
+      setTotal(totalRight - 1);
     }
     if (currentQuestion + 1 < questions.length) {
-      setCurrentQuestion(currentQuetsion + 1);
+      setCurrentQuestion(currentQuestion + 1);
     } else {
       // hide the question text & the home button
+
+      document.getElementById("qText").hidden = true;
+      document.getElementById("homeButton").hidden = true;
+      setShowResults(true);
     }
 
     if (!correct) {
       // decrease num correct
+      numCorrect--;
     }
     // decrease heart graphic
-  };
-
-  const openWindow = () => {
-    let params =
-      "width=680,height=340,location=0,menubar=0,resizable=0,toolbar=0";
-    var newWindow = window.open("#/minecraftQuiz", "_blank", params);
-    //newWindow.document.title = "Minecraft";
   };
 
   const restartGame = () => {
@@ -61,8 +73,14 @@ export function Minecraft() {
 
   return (
     <>
-      <div id="MC" className="minecraft">
+      <div id="MC" className="minecraftPop">
         <h1>Minecraft Trivia Quiz</h1>
+
+        {/* show question */}
+        <h4 id="qText" className="question-txt">
+          {currentQuestion + 1}/{questions.length}.{" "}
+          {questions[currentQuestion].question}
+        </h4>
 
         {showResults ? (
           /* final results */
@@ -84,29 +102,32 @@ export function Minecraft() {
           <div className="window">
             {/* question card */}
 
-            {/* show question */}
-            <h3 id="qText" className="question-txt">
-              {currentQuestion + 1}/{questions.length}.{" "}
-              {questions[currentQuestion].question}
-            </h3>
-
-            <div className="menu-buttons">
+            <div className="question-card">
               {/* possible answers  */}
               <ul>
-                <Link to="/minecraftQuiz" className="minecraft-link">
-                  <h2 className="option">Start Quiz</h2>
-                </Link>
-                <h2 className="option"></h2>
-                <h2 className="option"></h2>
+                {questions[currentQuestion].answers.map((answer) => {
+                  return (
+                    <li key={answer.id}>
+                      <h2
+                        className="option"
+                        onClick={() => answerPicked(answer.correct)}
+                      >
+                        {answer.text}
+                      </h2>
+                    </li>
+                  );
+                })}
               </ul>
 
               <div className="buttons">
-                <ul>
-                  <h2 className="lower-button">Options...</h2>
-                  <h2 className="lower-button" onClick={() => close()}>
-                    Quit Quiz
+                <Link to="/minecraft" className="minecraft-link">
+                  <h2
+                    id="homeButton"
+                    className="home-btn"
+                  >
+                    Quit to Title
                   </h2>
-                </ul>
+                </Link>
               </div>
             </div>
           </div>

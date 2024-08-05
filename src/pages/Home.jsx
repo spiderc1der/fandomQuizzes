@@ -4,6 +4,14 @@ import "./home.css";
 
 export function Home() {
   // home page
+
+  // open minecraft "menu" window 
+  const openWindow = () => {
+    let params = "width=680,height=340,location=0,menubar=0,resizable=0,toolbar=0";
+    var newWindow = window.open("#/minecraft", "_blank", params);
+  };
+
+
   return (
     <>
       <div className="home">
@@ -32,11 +40,8 @@ export function Home() {
             <div className="main">
               <Link to="/undertale">
                 <button className="quizButton" id= "UTButton">Undertale Trivia</button>
-              </Link>
-              
-              <Link to="/minecraft">
-                <button className="quizButton" id= "MCButton">Minecraft Trivia</button>
-              </Link>
+              </Link>     
+                <button className="quizButton" id= "MCButton" onClick={() => openWindow()}>Minecraft Trivia</button>
               {/* rest of the quizzes here */}
             </div>
           </div>

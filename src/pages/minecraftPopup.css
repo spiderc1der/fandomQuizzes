@@ -7,8 +7,8 @@
 }
 
 /* main div */
-.minecraft {
-  background-color: rgb(76, 132, 205);
+.minecraftPop {
+  background-color: green;
   min-height: 100vh;
   min-width: 100vw;
   -webkit-user-select: none;
@@ -16,7 +16,7 @@
 }
 
 /* title */
-.minecraft h1 {
+.minecraftPop h1 {
   font-family: "Minecraftia";
   color: white;
   text-align: center;
@@ -24,9 +24,8 @@
   font-size: 20px;
 }
 
-
 /* question card details */
-.minecraft .question-txt {
+.minecraftPop .question-txt {
   font-family: "Minecraftia";
   font-weight: normal;
   text-align: center;
@@ -34,7 +33,7 @@
   margin: 0;
 }
 
-.minecraft .menu-buttons {
+.minecraftPop .question-card {
   font-family: "Minecraftia";
   font-weight: normal;
   color: white;
@@ -48,41 +47,18 @@
   margin-right: 12%;
 }
 
-.minecraft .menu-buttons ul {
-  list-style: none;
-  display: grid;
-  
-  column-gap: 5px;
-  list-style: none;
-}
-
-.minecraft .buttons ul {
+.minecraftPop ul {
   list-style: none;
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(1, 60px);
+  grid-template-rows: repeat(2, 60px);
   column-gap: 5px;
   list-style: none;
 }
 
-
-.minecraft .option {
+.minecraftPop .option {
   text-align: center;
-  width: 434px;
-  height: 30px;
-  text-shadow: 3px 3px 0px #3e3e3e;
-  font-weight: normal;
-  font-size: 16px;
-  border-style: solid;
-  border-color: black;
-  padding-top: 2px;
-  margin-top: 2px;
-  right: 50px;
-  background: gray;
-}
 
-.minecraft .lower-button{
-  text-align: center;
   width: 200px;
   height: 30px;
   text-shadow: 3px 3px 0px #3e3e3e;
@@ -90,33 +66,49 @@
   font-size: 16px;
   border-style: solid;
   border-color: black;
+
   padding-top: 2px;
   margin-top: 2px;
   right: 50px;
+
   background: gray;
 }
 
-.minecraft .menu-buttons li {
-  display: grid;
-}
-
-.minecraft .option:hover {
+.minecraftPop .option:hover {
   background: lightskyblue;
   border-color: white;
   color: lightgoldenrodyellow;
 }
 
-.minecraft .lower-button:hover {
+.minecraftPop .home-btn {
+  text-align: center;
+
+  width: 434px;
+  height: 30px;
+  text-shadow: 3px 3px 0px #3e3e3e;
+  font-weight: normal;
+  font-size: 18px;
+  border-style: solid;
+  border-color: black;
+
+  margin-top: 2px;
+  margin-left: 8%;
+  padding-top: 2px;
+
+  background: gray;
+}
+
+.minecraftPop .home-btn:hover {
   background: lightskyblue;
   border-color: white;
   color: lightgoldenrodyellow;
 }
 
-.minecraft .buttons {
+.minecraftPop .buttons {
   margin-top: -15px;
 }
 
-.minecraft .minecraft-link{
+.minecraftPop .minecraft-link{
   color:white;
   background-color: transparent;
   text-decoration: none;
