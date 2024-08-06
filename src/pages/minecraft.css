@@ -9,6 +9,7 @@
 /* main div */
 .minecraft {
   background-color: rgb(76, 132, 205);
+  background-image:  url("src/assets/mc/mc_BG.png");
   min-height: 100vh;
   min-width: 100vw;
   -webkit-user-select: none;
@@ -84,12 +85,13 @@
   text-shadow: 3px 3px 0px #3e3e3e;
   font-weight: normal;
   font-size: 16px;
-  border-style: solid;
-  border-color: black;
+  /* border-style: solid;
+  border-color: black;*/
   padding-top: 2px;
   margin-top: 2px;
   right: 50px;
-  background: gray;
+
+  background-image: url('src/assets/mc/large_btn.png');
 }
 
 .minecraft .lower-button{
@@ -112,9 +114,7 @@
 }
 
 .minecraft .option:hover {
-  background: lightskyblue;
-  border-color: white;
-  color: lightgoldenrodyellow;
+  background-image: url('src/assets/mc/large_btn_hover.png');
 }
 
 .minecraft .lower-button:hover {
