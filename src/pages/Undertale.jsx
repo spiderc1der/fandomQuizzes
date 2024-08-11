@@ -10,6 +10,7 @@ export function Undertale() {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const MAXHP = 20;
 
   // sound effects
   const selectSFX = new Audio("src/sounds/snd_select.wav");
@@ -91,7 +92,8 @@ export function Undertale() {
       ],
     },
     {
-      question: "What can Papyrus be seen driving in the credits of True Pacifist?",
+      question:
+        "What can Papyrus be seen driving in the credits of True Pacifist?",
       answers: [
         { id: 0, text: "A tricycle", correct: false },
         { id: 1, text: "A truck", correct: false },
@@ -109,7 +111,8 @@ export function Undertale() {
       ],
     },
     {
-      question: "Which soul traits are represented by the flashing colors of Sans' left eye?",
+      question:
+        "Which soul traits are represented by the flashing colors of Sans' left eye?",
       answers: [
         { id: 0, text: "Justice, Integrity", correct: false },
         { id: 1, text: "Bravery, Patience", correct: false },
@@ -118,7 +121,8 @@ export function Undertale() {
       ],
     },
     {
-      question: "How many fightable Kickstarter-backer custom NPCs are in the game?",
+      question:
+        "How many fightable Kickstarter-backer custom NPCs are in the game?",
       answers: [
         { id: 0, text: "3", correct: true },
         { id: 1, text: "1", correct: false },
@@ -145,7 +149,8 @@ export function Undertale() {
       ],
     },
     {
-      question: "What's the limit of hotdogs that Sans will stack on the protagonist's head?",
+      question:
+        "What's the limit of hotdogs that Sans will stack on the protagonist's head?",
       answers: [
         { id: 0, text: "25", correct: false },
         { id: 1, text: "30", correct: true },
@@ -156,10 +161,10 @@ export function Undertale() {
     {
       question: "What does Papyrus refer to his outfit as?",
       answers: [
-        { id: 0, text: "\"Battle body\"", correct: true },
-        { id: 1, text: "\"Costume\"", correct: false },
-        { id: 2, text: "\"Battle outfit\"", correct: false },
-        { id: 3, text: "\"Fighting figure\"", correct: false },
+        { id: 0, text: '"Battle body"', correct: true },
+        { id: 1, text: '"Costume"', correct: false },
+        { id: 2, text: '"Battle outfit"', correct: false },
+        { id: 3, text: '"Fighting figure"', correct: false },
       ],
     },
     {
@@ -181,12 +186,13 @@ export function Undertale() {
       ],
     },
     {
-      question: "Which of the following is said by the River Person? \"Tra la la...\"",
+      question:
+        'Which of the following is said by the River Person? "Tra la la..."',
       answers: [
-        { id: 0, text: "\"... Tri li li. Tre le le.\"", correct: true },
-        { id: 1, text: "\"... Remember to SAVE.\"", correct: false },
-        { id: 2, text: "\"... Hmm?\"", correct: false },
-        { id: 3, text: "\"... Careful.\"", correct: false },
+        { id: 0, text: '"... Tri li li. Tre le le."', correct: true },
+        { id: 1, text: '"... Remember to SAVE."', correct: false },
+        { id: 2, text: '"... Hmm?"', correct: false },
+        { id: 3, text: '"... Careful."', correct: false },
       ],
     },
     {
@@ -217,16 +223,17 @@ export function Undertale() {
       ],
     },
     {
-      question: "What do the \"punch cards\" you get from Nice Cream Guy say?",
+      question: 'What do the "punch cards" you get from Nice Cream Guy say?',
       answers: [
-        { id: 0, text: "\"Thanks!\"", correct: false },
-        { id: 1, text: "\":)\"", correct: false },
-        { id: 2, text: "\"please... please come back...\"", correct: true },
-        { id: 3, text: "\"1 free nice cream\"", correct: false },
+        { id: 0, text: '"Thanks!"', correct: false },
+        { id: 1, text: '":)"', correct: false },
+        { id: 2, text: '"please... please come back..."', correct: true },
+        { id: 3, text: '"1 free nice cream"', correct: false },
       ],
     },
     {
-      question: "Which of the following is NOT one of the amalgamates in True Lab?",
+      question:
+        "Which of the following is NOT one of the amalgamates in True Lab?",
       answers: [
         { id: 0, text: "Eraserhead", correct: true },
         { id: 1, text: "Endogeny", correct: false },
@@ -235,17 +242,18 @@ export function Undertale() {
       ],
     },
     {
-      question: "What's the description of the item, \"Real Knife\"?",
+      question: 'What\'s the description of the item, "Real Knife"?',
       answers: [
-        { id: 0, text: "\"Like it sounds.\"", correct: false },
-        { id: 1, text: "\"Here we are!\"", correct: true },
-        { id: 2, text: "\"Sharp.\"", correct: false },
-        { id: 3, text: "\"Made of steel.\"", correct: false },
+        { id: 0, text: '"Like it sounds."', correct: false },
+        { id: 1, text: '"Here we are!"', correct: true },
+        { id: 2, text: '"Sharp."', correct: false },
+        { id: 3, text: '"Made of steel."', correct: false },
       ],
-    }
+    },
   ];
 
   const [totalRight, setTotal] = useState(questions.length);
+  const [healthPoints, setHP] = useState(MAXHP);
 
   const answerPicked = (correct) => {
     if (correct) {
@@ -265,6 +273,7 @@ export function Undertale() {
       setTimeout(endShakeAnim, 250);
 
       setTotal(totalRight - 1);
+      setHP(healthPoints - 1);
     }
 
     if (currentQuestion + 1 < questions.length) {
@@ -275,14 +284,14 @@ export function Undertale() {
       setShowResults(true);
     }
 
-    // update the question progress bar
+    // update the HP bar
 
-    var numCorrect = totalRight;
+    var currentHP = healthPoints;
 
     if (!correct) {
-      numCorrect--;
+      //setHP(healthPoints -1);
     }
-    var percentRight = (numCorrect / questions.length) * 100;
+    var percentRight = (healthPoints / MAXHP) * 100;
 
     console.log("totalRight: " + totalRight);
 
@@ -299,6 +308,7 @@ export function Undertale() {
     setCurrentQuestion(0);
     setShowResults(false);
     setTotal(questions.length);
+    setCurrentQuestion(20);
     document.getElementById("qText").hidden = false;
     document.getElementById("homeButton").hidden = false;
   };
@@ -328,7 +338,6 @@ export function Undertale() {
   function endShakeAnim() {
     document.body.className = "";
   }
-
 
   function getResult(percentage) {
     if (percentage == 100) {
@@ -384,20 +393,15 @@ export function Undertale() {
               <script src="src/scripts/confetti.js"></script>
 
               <h3 className="numberCorrect">
-                
                 {score} out of {questions.length} correct
                 <br />
                 {(score / questions.length) * 100}%
                 {/* print message + play sfx depending on score */}
                 <br />
                 <br />
-                {getResult((score / questions.length) * 100)}
-                
-                <script>
-                  alert()
-                </script>
-
-                {console.log((score / questions.length) * 100)}
+                {getResult((currentHP / MAXHP) * 100)}
+                <script>alert()</script>
+                {console.log((currentHP / MAXHP) * 100)}
               </h3>
               <button className="restart-btn" onClick={() => resetAnim()}>
                 RESET
@@ -432,7 +436,7 @@ export function Undertale() {
                   <div className="hpBox" id="healthPointBox">
                     &nbsp;&nbsp;
                   </div>
-                  {totalRight}/{questions.length}
+                  {healthPoints}/{MAXHP}
                 </p>
               </div>
 
