@@ -278,6 +278,7 @@ export function Undertale() {
 
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion(currentQuestion + 1);
+      console.log(currentQuestion);
     } else {
       document.getElementById("qText").hidden = true;
       document.getElementById("homeButton").hidden = true;
@@ -293,8 +294,6 @@ export function Undertale() {
     }
     var percentRight = (healthPoints / MAXHP) * 100;
 
-    console.log("totalRight: " + totalRight);
-
     document.getElementById("healthPointBox").style.backgroundImage =
       "linear-gradient(to right, yellow 0%, yellow " +
       percentRight +
@@ -308,7 +307,7 @@ export function Undertale() {
     setCurrentQuestion(0);
     setShowResults(false);
     setTotal(questions.length);
-    setCurrentQuestion(20);
+    setHP(20);
     document.getElementById("qText").hidden = false;
     document.getElementById("homeButton").hidden = false;
   };
@@ -390,8 +389,6 @@ export function Undertale() {
 
               <h2 className="finalTitle">Final Results</h2>
 
-              <script src="src/scripts/confetti.js"></script>
-
               <h3 className="numberCorrect">
                 {score} out of {questions.length} correct
                 <br />
@@ -399,9 +396,7 @@ export function Undertale() {
                 {/* print message + play sfx depending on score */}
                 <br />
                 <br />
-                {getResult((currentHP / MAXHP) * 100)}
-                <script>alert()</script>
-                {console.log((currentHP / MAXHP) * 100)}
+                {getResult((score / questions.length) * 100)}
               </h3>
               <button className="restart-btn" onClick={() => resetAnim()}>
                 RESET
@@ -431,7 +426,7 @@ export function Undertale() {
             <div className="buttons">
               <div className="playerInfo">
                 <p>
-                  HUMAN <p className="LOVE">LV 1</p>{" "}
+                  PLAYER <p className="LOVE">LV 1</p>{" "}
                   <p className="bottomQuestionTxt">HP</p>
                   <div className="hpBox" id="healthPointBox">
                     &nbsp;&nbsp;
