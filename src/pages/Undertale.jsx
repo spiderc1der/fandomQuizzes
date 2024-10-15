@@ -1,16 +1,25 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-
-import $ from "canvas-confetti";
+import { useState, useEffect } from "react";
 
 import "./undertale.css";
 import "../index.css";
+//import Confetti from "react-confetti";
+//import useWindowSize from 'react-use/lib/useWindowSize'
 
 export function Undertale() {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [showResults, setShowResults] = useState(false);
+  //const [showResults, setShowResults] = useState(false);
+
+  const [page, setPage] = useState(1);
+
+  /**const {width, height} = useWindowSize()
+  const [uiProps, setUiProps] = useState({
+    showConfetti: true,
+  });**/
+
   const MAXHP = 20;
+  const [healthPoints, setHP] = useState(MAXHP);
 
   // sound effects
   const selectSFX = new Audio("src/sounds/snd_select.wav");
@@ -18,6 +27,7 @@ export function Undertale() {
   const correctSFX = new Audio("src/sounds/snd_bell.wav");
   const incorrectSFX = new Audio("src/sounds/snd_hurt1.wav");
 
+  // quiz questions
   const questions = [
     {
       question: "In total, how many human children have fallen underground?",
@@ -253,7 +263,6 @@ export function Undertale() {
   ];
 
   const [totalRight, setTotal] = useState(questions.length);
-  const [healthPoints, setHP] = useState(MAXHP);
 
   const answerPicked = (correct) => {
     if (correct) {
@@ -282,12 +291,11 @@ export function Undertale() {
     } else {
       document.getElementById("qText").hidden = true;
       document.getElementById("homeButton").hidden = true;
+      setPage(0);
       setShowResults(true);
     }
 
     // update the HP bar
-
-    var currentHP = healthPoints;
 
     if (!correct) {
       //setHP(healthPoints -1);
@@ -302,16 +310,18 @@ export function Undertale() {
       "%, red 100%)";
   };
 
+  // resets game & all stats
   const restartGame = () => {
     setScore(0);
     setCurrentQuestion(0);
-    setShowResults(false);
+    setPage(1);
     setTotal(questions.length);
     setHP(20);
     document.getElementById("qText").hidden = false;
     document.getElementById("homeButton").hidden = false;
   };
 
+  // fade animation upon RESET
   function startFadeAnim() {
     document.getElementById("resetIMG").className = "fade-in";
   }
@@ -338,6 +348,7 @@ export function Undertale() {
     document.body.className = "";
   }
 
+  // returns result message based on score
   function getResult(percentage) {
     if (percentage == 100) {
       return "Congratulations! A perfect score! You're a certified Undertale MASTER!";
@@ -360,9 +371,17 @@ export function Undertale() {
     }
   }
 
+  /**useEffect(() => {
+    uiProps.showConfetti &&
+      setTimeout(() => {
+        setUiProps({ ...uiProps, showConfetti: false });
+      }, 8000);
+  }, [uiProps.showConfetti]);/** */
+
   return (
     <>
       <div id="UT" className="undertale">
+        
         <h1>Undertale Trivia Quiz</h1>
 
         {/* current question */}
@@ -373,76 +392,128 @@ export function Undertale() {
 
         {/* show either the results or the game */}
 
-        {showResults ? (
-          /* final results */
-          <div>
-            <br></br>
-            <br></br>
-            <div className="results">
-              <div id="fadeDIV">
-                <img
-                  src="src/assets/ut/white.png"
-                  id="resetIMG"
-                  alt="reset-fade"
-                />
-              </div>
+        {(() => {
+          switch (page) {
+            case 0:
+              return (
+                /* final results */
+                <div>
+                  <br></br>
+                  <br></br>
+                  <div className="results">
+                    <div id="fadeDIV">
+                      <img
+                        src="src/assets/ut/white.png"
+                        id="resetIMG"
+                        alt="reset-fade"
+                      />
+                    </div>
 
-              <h2 className="finalTitle">Final Results</h2>
+                    <h2 className="finalTitle">Final Results</h2>
 
-              <h3 className="numberCorrect">
-                {score} out of {questions.length} correct
-                <br />
-                {(score / questions.length) * 100}%
-                {/* print message + play sfx depending on score */}
-                <br />
-                <br />
-                {getResult((score / questions.length) * 100)}
-              </h3>
-              <button className="restart-btn" onClick={() => resetAnim()}>
-                RESET
-              </button>
-            </div>
-          </div>
-        ) : (
-          /* question card */
-
-          <div className="question-card">
-            {/* possible answers  */}
-            <ul>
-              {questions[currentQuestion].answers.map((answer) => {
-                return (
-                  <li key={answer.id}>
-                    <h2
-                      className="option"
-                      onClick={() => answerPicked(answer.correct)}
-                    >
-                      {answer.text}
-                    </h2>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <div className="buttons">
-              <div className="playerInfo">
-                <p>
-                  PLAYER <p className="LOVE">LV 1</p>{" "}
-                  <p className="bottomQuestionTxt">HP</p>
-                  <div className="hpBox" id="healthPointBox">
-                    &nbsp;&nbsp;
+                    <h3 className="numberCorrect">
+                      {score} out of {questions.length} correct
+                      <br />
+                      {(score / questions.length) * 100}%
+                      {/* print message + play sfx depending on score */}
+                      <br />
+                      <br />
+                      {getResult((score / questions.length) * 100)}
+                    </h3>
+                    <button className="restart-btn" onClick={() => resetAnim()}>
+                      RESET
+                    </button>
                   </div>
-                  {healthPoints}/{MAXHP}
-                </p>
-              </div>
+                </div>
+              );
 
-              <Link to="/">
-                <button id="homeButton" className="home-btn">
-                  HOME
-                </button>
-              </Link>
-            </div>
-          </div>
-        )}
+            case 1:
+              return (
+                /* question card */
+
+                <div className="question-card">
+                  {/* possible answers  */}
+                  <ul>
+                    {questions[currentQuestion].answers.map((answer) => {
+                      return (
+                        <li key={answer.id}>
+                          <h2
+                            className="option"
+                            onClick={() => answerPicked(answer.correct)}
+                          >
+                            {answer.text}
+                          </h2>
+                        </li>
+                      );
+                    })}
+                  </ul>
+
+                  <div className="buttons">
+                    <div className="playerInfo">
+                      <p>
+                        PLAYER <p className="LOVE">LV 1</p>{" "}
+                        <p className="bottomQuestionTxt">HP</p>
+                        <div className="hpBox" id="healthPointBox">
+                          &nbsp;&nbsp;
+                        </div>
+                        {healthPoints}/{MAXHP}
+                      </p>
+                    </div>
+
+                    <Link to="/">
+                      <button id="homeButton" className="home-btn">
+                        HOME
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              );
+            case 2:
+              // game over
+              break;
+
+            case 3:
+              // dirty hacker ending
+              break;
+            default:
+              <div className="question-card">
+                {/* possible answers  */}
+                <ul>
+                  {questions[currentQuestion].answers.map((answer) => {
+                    return (
+                      <li key={answer.id}>
+                        <h2
+                          className="option"
+                          onClick={() => answerPicked(answer.correct)}
+                        >
+                          {answer.text}
+                        </h2>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                <div className="buttons">
+                  <div className="playerInfo">
+                    <p>
+                      PLAYER <p className="LOVE">LV 1</p>{" "}
+                      <p className="bottomQuestionTxt">HP</p>
+                      <div className="hpBox" id="healthPointBox">
+                        &nbsp;&nbsp;
+                      </div>
+                      {healthPoints}/{MAXHP}
+                    </p>
+                  </div>
+
+                  <Link to="/">
+                    <button id="homeButton" className="home-btn">
+                      HOME
+                    </button>
+                  </Link>
+                </div>
+              </div>;
+          }
+        })()}
       </div>
     </>
   );
