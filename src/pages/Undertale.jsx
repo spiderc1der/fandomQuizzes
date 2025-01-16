@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+import React from "react";
+import Typed from "typed.js";
+
 import "./undertale.css";
 import "../index.css";
 //import Confetti from "react-confetti";
@@ -9,14 +12,9 @@ import "../index.css";
 export function Undertale() {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  //const [showResults, setShowResults] = useState(false);
 
   const [page, setPage] = useState(1);
-
-  /**const {width, height} = useWindowSize()
-  const [uiProps, setUiProps] = useState({
-    showConfetti: true,
-  });**/
+  const [gameOver, setGameOver] = useState(false);
 
   const MAXHP = 20;
   const [healthPoints, setHP] = useState(MAXHP);
@@ -289,25 +287,26 @@ export function Undertale() {
       setCurrentQuestion(currentQuestion + 1);
       console.log(currentQuestion);
     } else {
-      document.getElementById("qText").hidden = true;
-      document.getElementById("homeButton").hidden = true;
       setPage(0);
       setShowResults(true);
     }
 
-    // update the HP bar
+    // check if user has run out of health points
+    if (healthPoints == 0) {
+      setPage(2);
+      setGameOver(true);
+    } else {
+      // update the HP bar
 
-    if (!correct) {
-      //setHP(healthPoints -1);
+      var percentRight = (healthPoints / MAXHP) * 100;
+
+      document.getElementById("healthPointBox").style.backgroundImage =
+        "linear-gradient(to right, yellow 0%, yellow " +
+        percentRight +
+        "%, red " +
+        (percentRight + 1) +
+        "%, red 100%)";
     }
-    var percentRight = (healthPoints / MAXHP) * 100;
-
-    document.getElementById("healthPointBox").style.backgroundImage =
-      "linear-gradient(to right, yellow 0%, yellow " +
-      percentRight +
-      "%, red " +
-      (percentRight + 1) +
-      "%, red 100%)";
   };
 
   // resets game & all stats
@@ -371,18 +370,88 @@ export function Undertale() {
     }
   }
 
-  /**useEffect(() => {
-    uiProps.showConfetti &&
-      setTimeout(() => {
-        setUiProps({ ...uiProps, showConfetti: false });
-      }, 8000);
-  }, [uiProps.showConfetti]);/** */
+  // hook triggers typing effect for game over text 
+  useEffect(() => {
+    if (gameOver && page === 2) {
+      console.log('JDSFLDSKLJ');
+      typeGameOvrTxt();
+    }
+  }, [gameOver, page]); 
+
+  // typewriter effect for game over text
+
+  // counters
+  var i = 0;
+  var j = 0;
+  var k = 0;
+  var n = 0; 
+  // text lines
+  const sentence1 = "You cannot give";
+  const sentence2 = "up just yet. . . ";
+  const sentence3 = "Player!";
+  const sentence4 = "Stay determined. . . ";
+  // speed
+  const typeSpeed = 60;
+
+  // writes each line of txt 
+  function firstLine(){
+    if (i < sentence1.length) {
+      document.getElementById("line1").innerHTML += sentence1.charAt(i);
+      i++;
+      setTimeout(firstLine, typeSpeed);
+    }
+  }
+
+  function secondLine(){
+    if (j < sentence2.length) {
+      document.getElementById("line2").innerHTML += sentence2.charAt(j);
+      j++;
+      setTimeout(secondLine, typeSpeed);
+    }
+  }
+ 
+  function thirdLine(){
+    if (k < sentence3.length) {
+      document.getElementById("line1").innerHTML += sentence3.charAt(k);
+      k++;
+      setTimeout(thirdLine, typeSpeed);
+    }
+  }
+
+  function fourthLine(){
+    if (n < sentence4.length) {
+      document.getElementById("line2").innerHTML += sentence4.charAt(n);
+      n++;
+      setTimeout(fourthLine, typeSpeed);
+    }
+  }
+
+  // "blanks" paragraphs of given ids 
+  function eraseLines(){
+    document.getElementById("line1").innerHTML = '';
+    document.getElementById("line2").innerHTML = '';
+  }
+
+  // "types" lines with proper delays 
+  function typeGameOvrTxt(){
+    console.log('starting');
+    firstLine(); // "You cannot give"
+    setTimeout(secondLine, 1000); // "up just yet. . ."
+    setTimeout(eraseLines, 5000);
+    setTimeout(thirdLine, 7000); // "Player!"
+    setTimeout(fourthLine, 8500); // "Stay determined. . ."
+    console.log('ending');
+  }
+
+  function testGameOver(){
+    setPage(2)
+    setGameOver(true)
+  }
 
   return (
     <>
       <div id="UT" className="undertale">
-        
-        <h1>Undertale Trivia Quiz</h1>
+        <h1 id="titleText">Undertale Trivia Quiz</h1>
 
         {/* current question */}
         <h2 id="qText" className="question-txt">
@@ -398,6 +467,8 @@ export function Undertale() {
               return (
                 /* final results */
                 <div>
+                  {(document.getElementById("qText").hidden = true)}
+                  {(document.getElementById("titleText").hidden = true)}
                   <br></br>
                   <br></br>
                   <div className="results">
@@ -465,12 +536,40 @@ export function Undertale() {
                         HOME
                       </button>
                     </Link>
+                    <button
+                      id="gameOverDebug"
+                      className="home-btn"
+                      onClick={() => testGameOver()}
+                    >
+                      game over
+                    </button>
                   </div>
                 </div>
               );
             case 2:
-              // game over
-              break;
+              return (
+                /* game overs */
+
+                <div>
+                  {(document.getElementById("qText").hidden = true)}
+                  {(document.getElementById("titleText").hidden = true)}
+                  {(console.log(gameOver))}
+
+                  <h2 className="gameOverTitle">
+                    GAME
+                    <br />
+                    OVER
+                  </h2>
+
+                  <div className="gameOverText">
+                  <p className = "gameOvrTxt" id="line1"></p>
+                  <p className = "gameOvrTxt" id="line2"></p>
+       
+                  </div>
+
+
+                </div>
+              );
 
             case 3:
               // dirty hacker ending

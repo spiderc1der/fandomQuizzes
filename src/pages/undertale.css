@@ -8,6 +8,14 @@
 }
 
 @font-face {
+  font-family: "8bitwonder";
+  src: url("8-bit-wonder.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
   font-family: "crypt of tomorrow";
   src: url("crypt-of-tomorrow-ut-font-no-rus.woff") format("woff");
   font-weight: normal;
@@ -41,6 +49,41 @@ h3 {
   font-family: "8bitoperator JVE";
   font-weight: normal;
 }
+
+
+/* game over details */
+
+.undertale .gameOverTitle{
+  font-family: "8bitwonder";
+  font-size: 135px;
+  color: white;
+  margin: 1%;
+  text-align: center;
+
+}
+
+.undertale .gameOverText{
+  font-family: "8bitwonder";
+  margin-top: 10%;
+  margin-left: 35%;
+  margin-right: 25%;
+  text-align: left;
+  color: white; 
+}
+
+.undertale .gameOvrTxt{
+
+  font-size: 45px;
+  font-weight: normal;
+  font-family: "8bitoperator JVE";
+  letter-spacing: 10px;
+  margin:0;
+  padding:0
+  
+
+
+}
+
 
 /* question card details */
 .undertale .question-txt {
@@ -198,6 +241,8 @@ h3 {
   display: inline;
 }
 
+
+
 /* animation details */
 #resetIMG {
   position: fixed;
@@ -232,4 +277,5 @@ h3 {
 .cursorHide {
   cursor: none;
 }
+
 
