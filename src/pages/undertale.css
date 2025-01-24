@@ -241,9 +241,16 @@ h3 {
   display: inline;
 }
 
+/* SOUL break animation details */
+
+#frozenSoul{
+  position: absolute;
+  opacity: 100;
+  pointer-events: none;
+}
 
 
-/* animation details */
+/* reset animation details */
 #resetIMG {
   position: fixed;
   top: 0;
@@ -276,6 +283,7 @@ h3 {
 
 .cursorHide {
   cursor: none;
+  min-height: 100vh;
 }
 
 

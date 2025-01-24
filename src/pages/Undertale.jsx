@@ -370,11 +370,19 @@ export function Undertale() {
     }
   }
 
+  const ACTIVATE_GO_TXT = 0;
+
+  const [x_death_coord, setX] = useState(0);
+  const [y_death_coord, setY] = useState(0);
+
   // hook triggers typing effect for game over text 
   useEffect(() => {
-    if (gameOver && page === 2) {
-      console.log('JDSFLDSKLJ');
-      typeGameOvrTxt();
+    //if (gameOver && page === 2 && ACTIVATE_GO_TXT) {
+      //console.log('JDSFLDSKLJ');
+      //typeGameOvrTxt();
+    //}
+    if(gameOver && page === 2){
+      testGameOver();
     }
   }, [gameOver, page]); 
 
@@ -443,9 +451,38 @@ export function Undertale() {
     console.log('ending');
   }
 
+  function startGameOver(event){
+    let X = event.clientX 
+    let Y = event.clientY;
+
+    console.log('x coord:' + X + ', y coord: ' + Y) 
+
+    setX(X);
+    setY(Y);
+
+    testGameOver();
+  }
+
+  // tests the soul break animation, preceding the game over text 
+  function testSoulBreak(){
+
+    var frozenSoul = document.getElementById("frozenSoul")
+
+    //document.getElementById("root").classList.add("cursorHide");
+
+    document.getElementById("root").style.cursor = "none"
+    frozenSoul.style.left = x_death_coord + 'px';
+    frozenSoul.style.top = y_death_coord + 'px';
+
+    
+
+    
+  }
+
   function testGameOver(){
     setPage(2)
     setGameOver(true)
+    testSoulBreak()
   }
 
   return (
@@ -539,7 +576,7 @@ export function Undertale() {
                     <button
                       id="gameOverDebug"
                       className="home-btn"
-                      onClick={() => testGameOver()}
+                      onClick={() => startGameOver(event)}
                     >
                       game over
                     </button>
@@ -550,7 +587,7 @@ export function Undertale() {
               return (
                 /* game overs */
 
-                <div>
+                <div id="gameOverDiv" className="cursorHide">
                   {(document.getElementById("qText").hidden = true)}
                   {(document.getElementById("titleText").hidden = true)}
                   {(console.log(gameOver))}
@@ -560,6 +597,13 @@ export function Undertale() {
                     <br />
                     OVER
                   </h2>
+                  <div id="soulBreak">
+                      <img
+                        src="src/assets/ut/red_SOUL_sprite.png"
+                        id="frozenSoul"
+                        
+                      />
+                    </div>
 
                   <div className="gameOverText">
                   <p className = "gameOvrTxt" id="line1"></p>
