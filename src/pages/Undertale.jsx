@@ -370,21 +370,35 @@ export function Undertale() {
     }
   }
 
+  // flag
   const ACTIVATE_GO_TXT = 0;
+  var soul_breaking_flag = false;
 
   const [x_death_coord, setX] = useState(0);
   const [y_death_coord, setY] = useState(0);
 
-  // hook triggers typing effect for game over text 
+  // hook triggers typing effect for game over text
   useEffect(() => {
     //if (gameOver && page === 2 && ACTIVATE_GO_TXT) {
-      //console.log('JDSFLDSKLJ');
-      //typeGameOvrTxt();
+    //console.log('JDSFLDSKLJ');
+    //typeGameOvrTxt();
     //}
-    if(gameOver && page === 2){
+    if (gameOver && page === 2) {
       testGameOver();
     }
-  }, [gameOver, page]); 
+  }, [gameOver, page]);
+
+  // hook triggering soul break animation
+  useEffect(() => {
+    if (gameOver && page == 2 && soul_breaking_flag) {
+      console.log("beep beep");
+      setTimeout(() => {
+        const frozenSoul =  document.getElementById("frozenSoul");
+        frozenSoul.style.src = "/src/assets/ut/TEMP.png";
+      }, 1);
+      console.log("bebhjdsf");
+    }
+  }, [gameOver, page, soul_breaking_flag]);
 
   // typewriter effect for game over text
 
@@ -392,7 +406,7 @@ export function Undertale() {
   var i = 0;
   var j = 0;
   var k = 0;
-  var n = 0; 
+  var n = 0;
   // text lines
   const sentence1 = "You cannot give";
   const sentence2 = "up just yet. . . ";
@@ -401,8 +415,8 @@ export function Undertale() {
   // speed
   const typeSpeed = 60;
 
-  // writes each line of txt 
-  function firstLine(){
+  // writes each line of txt
+  function firstLine() {
     if (i < sentence1.length) {
       document.getElementById("line1").innerHTML += sentence1.charAt(i);
       i++;
@@ -410,15 +424,15 @@ export function Undertale() {
     }
   }
 
-  function secondLine(){
+  function secondLine() {
     if (j < sentence2.length) {
       document.getElementById("line2").innerHTML += sentence2.charAt(j);
       j++;
       setTimeout(secondLine, typeSpeed);
     }
   }
- 
-  function thirdLine(){
+
+  function thirdLine() {
     if (k < sentence3.length) {
       document.getElementById("line1").innerHTML += sentence3.charAt(k);
       k++;
@@ -426,7 +440,7 @@ export function Undertale() {
     }
   }
 
-  function fourthLine(){
+  function fourthLine() {
     if (n < sentence4.length) {
       document.getElementById("line2").innerHTML += sentence4.charAt(n);
       n++;
@@ -434,28 +448,28 @@ export function Undertale() {
     }
   }
 
-  // "blanks" paragraphs of given ids 
-  function eraseLines(){
-    document.getElementById("line1").innerHTML = '';
-    document.getElementById("line2").innerHTML = '';
+  // "blanks" paragraphs of given ids
+  function eraseLines() {
+    document.getElementById("line1").innerHTML = "";
+    document.getElementById("line2").innerHTML = "";
   }
 
-  // "types" lines with proper delays 
-  function typeGameOvrTxt(){
-    console.log('starting');
+  // "types" lines with proper delays
+  function typeGameOvrTxt() {
+    console.log("starting");
     firstLine(); // "You cannot give"
     setTimeout(secondLine, 1000); // "up just yet. . ."
     setTimeout(eraseLines, 5000);
     setTimeout(thirdLine, 7000); // "Player!"
     setTimeout(fourthLine, 8500); // "Stay determined. . ."
-    console.log('ending');
+    console.log("ending");
   }
 
-  function startGameOver(event){
-    let X = event.clientX 
+  function startGameOver(event) {
+    let X = event.clientX;
     let Y = event.clientY;
 
-    console.log('x coord:' + X + ', y coord: ' + Y) 
+    console.log("x coord:" + X + ", y coord: " + Y);
 
     setX(X);
     setY(Y);
@@ -463,26 +477,27 @@ export function Undertale() {
     testGameOver();
   }
 
-  // tests the soul break animation, preceding the game over text 
-  function testSoulBreak(){
+  // tests the soul break animation, preceding the game over text
+  function testSoulBreak() {
+    var frozenSoul = document.getElementById("frozenSoul");
 
-    var frozenSoul = document.getElementById("frozenSoul")
+    document.getElementById("root").style.cursor = "none";
+    frozenSoul.style.left = x_death_coord + "px";
+    frozenSoul.style.top = y_death_coord + "px";
 
-    //document.getElementById("root").classList.add("cursorHide");
+    //frozenSoul.style.src = "http://localhost:5173/src/assets/ut/TEMP.png"
 
-    document.getElementById("root").style.cursor = "none"
-    frozenSoul.style.left = x_death_coord + 'px';
-    frozenSoul.style.top = y_death_coord + 'px';
+    setTimeout(() => {frozenSoul.setAttribute('src', '/src/assets/ut/' + "broken_soul.png");}, 2000);
 
-    
+    //soul_breaking_flag = true;
 
-    
+     
   }
 
-  function testGameOver(){
-    setPage(2)
-    setGameOver(true)
-    testSoulBreak()
+  function testGameOver() {
+    setPage(2);
+    setGameOver(true);
+    testSoulBreak();
   }
 
   return (
@@ -590,7 +605,7 @@ export function Undertale() {
                 <div id="gameOverDiv" className="cursorHide">
                   {(document.getElementById("qText").hidden = true)}
                   {(document.getElementById("titleText").hidden = true)}
-                  {(console.log(gameOver))}
+                  {console.log(gameOver)}
 
                   <h2 className="gameOverTitle">
                     GAME
@@ -598,20 +613,16 @@ export function Undertale() {
                     OVER
                   </h2>
                   <div id="soulBreak">
-                      <img
-                        src="src/assets/ut/red_SOUL_sprite.png"
-                        id="frozenSoul"
-                        
-                      />
-                    </div>
-
-                  <div className="gameOverText">
-                  <p className = "gameOvrTxt" id="line1"></p>
-                  <p className = "gameOvrTxt" id="line2"></p>
-       
+                    <img
+                      src="src/assets/ut/red_SOUL_sprite.png"
+                      id="frozenSoul"
+                    />
                   </div>
 
-
+                  <div className="gameOverText">
+                    <p className="gameOvrTxt" id="line1"></p>
+                    <p className="gameOvrTxt" id="line2"></p>
+                  </div>
                 </div>
               );
 
