@@ -25,6 +25,9 @@ export function Undertale() {
   const correctSFX = new Audio("src/sounds/snd_bell.wav");
   const incorrectSFX = new Audio("src/sounds/snd_hurt1.wav");
 
+  const breakSFX = new Audio("src/sounds/snd_break1.wav");
+  const explodeSFX = new Audio("src/sounds/snd_break2.wav");
+
   // quiz questions
   const questions = [
     {
@@ -393,7 +396,7 @@ export function Undertale() {
     if (gameOver && page == 2 && soul_breaking_flag) {
       console.log("beep beep");
       setTimeout(() => {
-        const frozenSoul =  document.getElementById("frozenSoul");
+        const frozenSoul = document.getElementById("frozenSoul");
         frozenSoul.style.src = "/src/assets/ut/TEMP.png";
       }, 1);
       console.log("bebhjdsf");
@@ -485,13 +488,12 @@ export function Undertale() {
     frozenSoul.style.left = x_death_coord + "px";
     frozenSoul.style.top = y_death_coord + "px";
 
-    //frozenSoul.style.src = "http://localhost:5173/src/assets/ut/TEMP.png"
-
-    setTimeout(() => {frozenSoul.setAttribute('src', '/src/assets/ut/' + "broken_soul.png");}, 2000);
-
-    //soul_breaking_flag = true;
-
-     
+    setTimeout(() => {
+      frozenSoul.setAttribute("src", "/src/assets/ut/" + "broken_soul.png");
+      frozenSoul.style.left = x_death_coord - 3 + "px";
+      breakSFX.play();
+      breakSFX.currentTime = 0;
+    }, 2000);
   }
 
   function testGameOver() {
