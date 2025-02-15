@@ -23,11 +23,19 @@
   font-display: block;
 }
 
+/* variables */
+
+:root {
+  --left: url("src/assets/ut/img/shard_1.png");
+  --right: url("src/assets/ut/img/shard_3.png");
+  --round: url("src/assets/ut/img/shard_2.png");
+}
+
 /* main div */
 .undertale {
   background-color: black;
   min-height: 100vh;
-  cursor: url("src/assets/ut/red_SOUL_sprite.png"), auto;
+  cursor: url("src/assets/ut/img/soul.png"), auto;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -50,40 +58,33 @@ h3 {
   font-weight: normal;
 }
 
-
 /* game over details */
 
-.undertale .gameOverTitle{
+.undertale .gameOverTitle {
   font-family: "8bitwonder";
   font-size: 135px;
   color: white;
   margin: 1%;
   text-align: center;
-
 }
 
-.undertale .gameOverText{
+.undertale .gameOverText {
   font-family: "8bitwonder";
   margin-top: 10%;
   margin-left: 35%;
   margin-right: 25%;
   text-align: left;
-  color: white; 
+  color: white;
 }
 
-.undertale .gameOvrTxt{
-
+.undertale .gameOvrTxt {
   font-size: 45px;
   font-weight: normal;
   font-family: "8bitoperator JVE";
   letter-spacing: 10px;
-  margin:0;
-  padding:0
-  
-
-
+  margin: 0;
+  padding: 0;
 }
-
 
 /* question card details */
 .undertale .question-txt {
@@ -149,6 +150,23 @@ h3 {
   font-weight: normal;
 }
 
+.undertale .restart-btn {
+  width: 140px;
+  height: 60px;
+  color: #e67631;
+  font-size: 35px;
+  background-color: black;
+  border: 4px solid #e67631;
+  font-family: "8bitoperator JVE";
+  font-weight: normal;
+}
+
+.undertale .home-btn:hover,
+.restart-btn:hover {
+  border-color: #e1d300;
+  color: #e1d300;
+  cursor: url("src/assets/ut/img/soul.png"), auto;
+}
 
 .undertale .restart-btn {
   width: 140px;
@@ -165,25 +183,7 @@ h3 {
 .restart-btn:hover {
   border-color: #e1d300;
   color: #e1d300;
-  cursor: url("src/assets/ut/red_SOUL_sprite.png"), auto;
-}
-
-.undertale .restart-btn {
-  width: 140px;
-  height: 60px;
-  color: #e67631;
-  font-size: 35px;
-  background-color: black;
-  border: 4px solid #e67631;
-  font-family: "8bitoperator JVE";
-  font-weight: normal;
-}
-
-.undertale .home-btn:hover,
-.restart-btn:hover {
-  border-color: #e1d300;
-  color: #e1d300;
-  cursor: url("src/assets/ut/red_SOUL_sprite.png"), auto;
+  cursor: url("src/assets/ut/img/soul.png"), auto;
 }
 
 .undertale .finalTitle {
@@ -194,7 +194,6 @@ h3 {
 .undertale .numberCorrect {
   font-size: 25px;
 }
-
 
 .undertale .playerInfo {
   color: white;
@@ -218,7 +217,6 @@ h3 {
   font-weight: normal;
 }
 
-
 .undertale .LOVE,
 .bottomQuestionTxt,
 .bottomQuestionTxt {
@@ -241,14 +239,331 @@ h3 {
   display: inline;
 }
 
-/* SOUL break animation details */
+/* soul break animation details */
 
-#frozenSoul{
+#soulBreak {
+}
+
+#frozenSoul {
   position: absolute;
   opacity: 100;
   pointer-events: none;
 }
 
+#left1 #left2 #left3 #right1 #right2 #right3 {
+}
+
+#left1 {
+  background-image: var(--left);
+}
+
+#left2 {
+  background-image: var(--left);
+}
+
+#left3 {
+  background-image: var(--left);
+}
+
+#right1 {
+  left: 205px;
+  top: 120px;
+  background-image: var(--left);
+}
+
+#right2 {
+  background-image: var(--left);
+}
+
+#right3 {
+  background-image: var(--left);
+}
+
+.shard {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  opacity: 0;
+}
+
+.shard2 {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  opacity: 0;
+}
+
+/* individual shard animations */
+
+.leftLow {
+  animation: left-low linear 3s, oscilate linear 3s;
+}
+.leftHigh {
+  animation: left-high linear 3s, oscilate linear 3s;
+}
+.rightHigh {
+  animation: right-high linear 3s, oscilate linear 3s;
+}
+
+.rightLow {
+  animation: right-low linear 3s, oscilate linear 3s;
+}
+
+@keyframes left-high {
+  1% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(-50px) translateY(-55px);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(-75px) translateY(-75px);
+    opacity: 1;
+  }
+  35% {
+    transform: translateX(-125px) translateY(-105px);
+    opacity: 1;
+  }
+  55% {
+    transform: translateX(-175px) translateY(-120px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(-200px) translateY(0);
+    opacity: 1;
+  }
+  85% {
+    transform: translateX(-225px) translateY(200px);
+    opacity: 1;
+  }
+  99% {
+    transform: translateX(-275px) translateY(500px);
+  }
+  100% {
+    transform: translateX(-275px) translateY(500px);
+    opacity: 0;
+  }
+}
+
+@keyframes left-low {
+  1% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(-75px) translateY(-35px);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(-100px) translateY(-10px);
+    opacity: 1;
+  }
+  35% {
+    transform: translateX(-150px) translateY(0px);
+    opacity: 1;
+  }
+  55% {
+    transform: translateX(-180px) translateY(55px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(-200px) translateY(155px);
+    opacity: 1;
+  }
+  85% {
+    transform: translateX(-225px) translateY(225px);
+    opacity: 1;
+  }
+  99% {
+    transform: translateX(-250px) translateY(500px);
+    opacity: 1;
+  }
+  99% {
+    transform: translateX(-250px) translateY(500px);
+    opacity: 0;
+  }
+}
+
+@keyframes right-high {
+  1% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(100px) translateY(-55px);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(125px) translateY(-75px);
+    opacity: 1;
+  }
+  35% {
+    transform: translateX(175px) translateY(-105px);
+    opacity: 1;
+  }
+  55% {
+    transform: translateX(225px) translateY(-120px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(250px) translateY(0px);
+    opacity: 1;
+  }
+  85% {
+    transform: translateX(275px) translateY(200px);
+    opacity: 1;
+  }
+  99% {
+    transform: translateX(300px) translateY(500px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(300px) translateY(500px);
+    opacity: 0;
+  }
+}
+
+@keyframes right-low {
+  1% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(100px) translateY(-35px);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(125px) translateY(-10px);
+    opacity: 1;
+  }
+  35% {
+    transform: translateX(175px) translateY(0px);
+    opacity: 1;
+  }
+  55% {
+    transform: translateX(205px) translateY(55px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(235px) translateY(155px);
+    opacity: 1;
+  }
+  85% {
+    transform: translateX(275px) translateY(225px);
+    opacity: 1;
+  }
+  99% {
+    transform: translateX(280px) translateY(500px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(280px) translateY(500px);
+    opacity: 0;
+  }
+}
+
+@keyframes oscilate {
+  3% {
+    background-image: var(--round);
+  }
+  6% {
+    background-image: var(--right);
+  }
+  9% {
+    background-image: var(--round);
+  }
+  12% {
+    background-image: var(--left);
+  }
+  15% {
+    background-image: var(--round);
+  }
+  18% {
+    background-image: var(--right);
+  }
+  21% {
+    background-image: var(--round);
+  }
+  24% {
+    background-image: var(--left);
+  }
+  27% {
+    background-image: var(--round);
+  }
+  30% {
+    background-image: var(--right);
+  }
+  33% {
+    background-image: var(--round);
+  }
+  36% {
+    background-image: var(--left);
+  }
+  39% {
+    background-image: var(--round);
+  }
+  42% {
+    background-image: var(--right);
+  }
+  45% {
+    background-image: var(--round);
+  }
+  48% {
+    background-image: var(--left);
+  }
+  51% {
+    background-image: var(--round);
+  }
+  54% {
+    background-image: var(--right);
+  }
+  57% {
+    background-image: var(--round);
+  }
+  60% {
+    background-image: var(--left);
+  }
+  63% {
+    background-image: var(--round);
+  }
+  66% {
+    background-image: var(--right);
+  }
+  69% {
+    background-image: var(--round);
+  }
+  72% {
+    background-image: var(--left);
+  }
+  75% {
+    background-image: var(--round);
+  }
+  78% {
+    background-image: var(--right);
+  }
+  81% {
+    background-image: var(--round);
+  }
+  84% {
+    background-image: var(--left);
+  }
+  87% {
+    background-image: var(--round);
+  }
+  90% {
+    background-image: var(--right);
+  }
+  93% {
+    background-image: var(--round);
+  }
+  96% {
+    background-image: var(--left);
+  }
+  99% {
+    background-image: var(--round);
+  }
+  100% {
+    background-image: var(--right);
+  }
+}
 
 /* reset animation details */
 #resetIMG {
@@ -263,27 +578,38 @@ h3 {
   animation: fadeIn 6s;
 }
 
-.shakeBox{
+.shakeBox {
   animation: shake 200ms;
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  95% { opacity: 1; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  25% { transform: translate(-1px, -2px) rotate(-1deg); }
-  75% { transform: translate(-3px, 0px) rotate(1deg); }
-  100% { transform: translate(3px, 2px) rotate(0deg); }
-  
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  25% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  75% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  100% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
 }
 
 .cursorHide {
   cursor: none;
   min-height: 100vh;
 }
-
-

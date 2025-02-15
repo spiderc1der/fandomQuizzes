@@ -6,8 +6,6 @@ import Typed from "typed.js";
 
 import "./undertale.css";
 import "../index.css";
-//import Confetti from "react-confetti";
-//import useWindowSize from 'react-use/lib/useWindowSize'
 
 export function Undertale() {
   const [score, setScore] = useState(0);
@@ -20,13 +18,12 @@ export function Undertale() {
   const [healthPoints, setHP] = useState(MAXHP);
 
   // sound effects
-  const selectSFX = new Audio("src/sounds/snd_select.wav");
-  const resetSFX = new Audio("src/sounds/mus_cymbal.wav");
-  const correctSFX = new Audio("src/sounds/snd_bell.wav");
-  const incorrectSFX = new Audio("src/sounds/snd_hurt1.wav");
+  const resetSFX = new Audio("src/assets/ut/sfx/mus_cymbal.wav");
+  const correctSFX = new Audio("src/assets/ut/sfx/snd_bell.wav");
+  const incorrectSFX = new Audio("src/assets/ut/sfx/snd_hurt1.wav");
 
-  const breakSFX = new Audio("src/sounds/snd_break1.wav");
-  const explodeSFX = new Audio("src/sounds/snd_break2.wav");
+  const breakSFX = new Audio("src/assets/ut/sfx/snd_break1.wav");
+  const explodeSFX = new Audio("src/assets/ut/sfx/snd_break2.wav");
 
   // quiz questions
   const questions = [
@@ -373,35 +370,20 @@ export function Undertale() {
     }
   }
 
+  const [animShards, setAnimShards] = useState(false);
+
   // flag
   const ACTIVATE_GO_TXT = 0;
-  var soul_breaking_flag = false;
 
   const [x_death_coord, setX] = useState(0);
   const [y_death_coord, setY] = useState(0);
 
   // hook triggers typing effect for game over text
   useEffect(() => {
-    //if (gameOver && page === 2 && ACTIVATE_GO_TXT) {
-    //console.log('JDSFLDSKLJ');
-    //typeGameOvrTxt();
-    //}
     if (gameOver && page === 2) {
       testGameOver();
     }
   }, [gameOver, page]);
-
-  // hook triggering soul break animation
-  useEffect(() => {
-    if (gameOver && page == 2 && soul_breaking_flag) {
-      console.log("beep beep");
-      setTimeout(() => {
-        const frozenSoul = document.getElementById("frozenSoul");
-        frozenSoul.style.src = "/src/assets/ut/TEMP.png";
-      }, 1);
-      console.log("bebhjdsf");
-    }
-  }, [gameOver, page, soul_breaking_flag]);
 
   // typewriter effect for game over text
 
@@ -484,16 +466,59 @@ export function Undertale() {
   function testSoulBreak() {
     var frozenSoul = document.getElementById("frozenSoul");
 
+    // soul shards
+    var left1 = document.getElementById("left1");
+    var left2 = document.getElementById("left2");
+    var left3 = document.getElementById("left3");
+
+    var right1 = document.getElementById("right1");
+    var right2 = document.getElementById("right2");
+    var right3 = document.getElementById("right3");
+
+    // hide cursor, place frozen soul sprite at
+    // cursor's coordinates
     document.getElementById("root").style.cursor = "none";
     frozenSoul.style.left = x_death_coord + "px";
     frozenSoul.style.top = y_death_coord + "px";
 
+    // get adjusted coordinate for "broken" soul sprite
+    var new_x_coord = x_death_coord - 3;
+
+    // break soul & move soul shards into relative positions
     setTimeout(() => {
-      frozenSoul.setAttribute("src", "/src/assets/ut/" + "broken_soul.png");
-      frozenSoul.style.left = x_death_coord - 3 + "px";
+      frozenSoul.setAttribute("src", "/src/assets/ut/img/" + "broken_soul.png");
+      frozenSoul.style.left = new_x_coord + "px";
+
+      left1.style.left = new_x_coord - 5 + "px";
+      left1.style.top = y_death_coord - 5 + "px";
+
+      left2.style.left = new_x_coord + "px";
+      left2.style.top = y_death_coord + 2 + "px";
+
+      left3.style.left = new_x_coord + "px";
+      left3.style.top = y_death_coord - 1 + "px";
+
+      right1.style.left = new_x_coord + 10 + "px";
+      right1.style.top = y_death_coord - 5 + "px";
+
+      right2.style.left = new_x_coord + 15 + "px";
+      right2.style.top = y_death_coord + "px";
+
+      right3.style.left = new_x_coord + 11 + "px";
+      right3.style.top = y_death_coord + 3 + "px";
+
+      // play sfx
       breakSFX.play();
       breakSFX.currentTime = 0;
-    }, 2000);
+
+      setTimeout(() => {
+        frozenSoul.style.opacity = 0;
+        explodeSFX.play();
+        explodeSFX.currentTime = 0;
+
+        setAnimShards(true);
+      }, 1800);
+    }, 1000);
   }
 
   function testGameOver() {
@@ -528,7 +553,7 @@ export function Undertale() {
                   <div className="results">
                     <div id="fadeDIV">
                       <img
-                        src="src/assets/ut/white.png"
+                        src="src/assets/ut/img/white.png"
                         id="resetIMG"
                         alt="reset-fade"
                       />
@@ -615,10 +640,33 @@ export function Undertale() {
                     OVER
                   </h2>
                   <div id="soulBreak">
-                    <img
-                      src="src/assets/ut/red_SOUL_sprite.png"
-                      id="frozenSoul"
-                    />
+                    <img src="src/assets/ut/img/soul.png" id="frozenSoul" />
+
+                    <div
+                      className={`shard ${animShards ? "rightHigh" : ""}`}
+                      id="right1"
+                    ></div>
+                    <div
+                      className={`shard ${animShards ? "rightLow" : ""}`}
+                      id="right2"
+                    ></div>
+                    <div
+                      className={`shard ${animShards ? "rightLow" : ""}`}
+                      id="right3"
+                    ></div>
+
+                    <div
+                      className={`shard ${animShards ? "rightHigh" : ""}`}
+                      id="left1"
+                    ></div>
+                    <div
+                      className={`shard2 ${animShards ? "leftLow" : ""}`}
+                      id="left2"
+                    ></div>
+                    <div
+                      className={`shard2 ${animShards ? "leftHigh" : ""}`}
+                      id="left3"
+                    ></div>
                   </div>
 
                   <div className="gameOverText">
