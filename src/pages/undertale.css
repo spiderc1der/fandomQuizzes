@@ -241,7 +241,12 @@ h3 {
 
 /* soul break animation details */
 
-#soulBreak {
+#gOverTitle{
+  opacity: 0;
+}
+
+.gameOverFade {
+  animation: fadeIn 5s forwards;
 }
 
 #frozenSoul {
@@ -251,42 +256,10 @@ h3 {
 }
 
 #left1 #left2 #left3 #right1 #right2 #right3 {
-}
-
-#left1 {
-  background-image: var(--left);
-}
-
-#left2 {
-  background-image: var(--left);
-}
-
-#left3 {
-  background-image: var(--left);
-}
-
-#right1 {
-  left: 205px;
-  top: 120px;
-  background-image: var(--left);
-}
-
-#right2 {
-  background-image: var(--left);
-}
-
-#right3 {
   background-image: var(--left);
 }
 
 .shard {
-  position: absolute;
-  width: 11px;
-  height: 11px;
-  opacity: 0;
-}
-
-.shard2 {
   position: absolute;
   width: 11px;
   height: 11px;

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import React from "react";
-import Typed from "typed.js";
 
 import "./undertale.css";
 import "../index.css";
@@ -17,13 +16,17 @@ export function Undertale() {
   const MAXHP = 20;
   const [healthPoints, setHP] = useState(MAXHP);
 
-  // sound effects
+  // sound effects & music
   const resetSFX = new Audio("src/assets/ut/sfx/mus_cymbal.wav");
   const correctSFX = new Audio("src/assets/ut/sfx/snd_bell.wav");
   const incorrectSFX = new Audio("src/assets/ut/sfx/snd_hurt1.wav");
 
   const breakSFX = new Audio("src/assets/ut/sfx/snd_break1.wav");
   const explodeSFX = new Audio("src/assets/ut/sfx/snd_break2.wav");
+
+  const Determination = new Audio("src/assets/ut/sfx/determination.mp3")
+  Determination.playbackRate = 1.075;
+  Determination.preservesPitch = false;
 
   // quiz questions
   const questions = [
@@ -371,6 +374,7 @@ export function Undertale() {
   }
 
   const [animShards, setAnimShards] = useState(false);
+  const [animGameOver, setAnimGameOver] = useState(false);
 
   // flag
   const ACTIVATE_GO_TXT = 0;
@@ -462,6 +466,14 @@ export function Undertale() {
     testGameOver();
   }
 
+  function playGameOverMusic(){
+    Determination.play();
+    Determination.currentTime = 0;
+    setTimeout(() => {
+      typeGameOvrTxt();
+    }, 1800);
+  }
+
   // tests the soul break animation, preceding the game over text
   function testSoulBreak() {
     var frozenSoul = document.getElementById("frozenSoul");
@@ -517,6 +529,13 @@ export function Undertale() {
         explodeSFX.currentTime = 0;
 
         setAnimShards(true);
+
+        setTimeout(() => {
+          setAnimGameOver(true);
+          playGameOverMusic();
+          
+        }, 2000);
+        
       }, 1800);
     }, 1000);
   }
@@ -525,6 +544,7 @@ export function Undertale() {
     setPage(2);
     setGameOver(true);
     testSoulBreak();
+    
   }
 
   return (
@@ -634,7 +654,7 @@ export function Undertale() {
                   {(document.getElementById("titleText").hidden = true)}
                   {console.log(gameOver)}
 
-                  <h2 className="gameOverTitle">
+                  <h2 className={`gameOverTitle ${ animGameOver? "gameOverFade" : ""}`} id ="gOverTitle">
                     GAME
                     <br />
                     OVER
@@ -660,11 +680,11 @@ export function Undertale() {
                       id="left1"
                     ></div>
                     <div
-                      className={`shard2 ${animShards ? "leftLow" : ""}`}
+                      className={`shard ${animShards ? "leftLow" : ""}`}
                       id="left2"
                     ></div>
                     <div
-                      className={`shard2 ${animShards ? "leftHigh" : ""}`}
+                      className={`shard ${animShards ? "leftHigh" : ""}`}
                       id="left3"
                     ></div>
                   </div>
