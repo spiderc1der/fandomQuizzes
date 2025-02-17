@@ -13,6 +13,17 @@ export function Undertale() {
   const [page, setPage] = useState(1);
   const [gameOver, setGameOver] = useState(false);
 
+  // hides question txt & game title on result screen
+  useEffect(() => {
+    if (page == 0) {
+      document.getElementById("qText").hidden = true;
+      document.getElementById("titleText").hidden = true;
+    } else {
+      document.getElementById("qText").hidden = false;
+      document.getElementById("titleText").hidden = false;
+    }
+  }, [page]);
+
   const MAXHP = 20;
   const [healthPoints, setHP] = useState(MAXHP);
 
@@ -20,11 +31,10 @@ export function Undertale() {
   const resetSFX = new Audio("src/assets/ut/sfx/mus_cymbal.wav");
   const correctSFX = new Audio("src/assets/ut/sfx/snd_bell.wav");
   const incorrectSFX = new Audio("src/assets/ut/sfx/snd_hurt1.wav");
-
   const breakSFX = new Audio("src/assets/ut/sfx/snd_break1.wav");
   const explodeSFX = new Audio("src/assets/ut/sfx/snd_break2.wav");
 
-  const Determination = new Audio("src/assets/ut/sfx/determination.mp3")
+  const Determination = new Audio("src/assets/ut/sfx/determination.mp3");
   Determination.playbackRate = 1.075;
   Determination.preservesPitch = false;
 
@@ -291,7 +301,6 @@ export function Undertale() {
       console.log(currentQuestion);
     } else {
       setPage(0);
-      setShowResults(true);
     }
 
     // check if user has run out of health points
@@ -319,8 +328,6 @@ export function Undertale() {
     setPage(1);
     setTotal(questions.length);
     setHP(20);
-    document.getElementById("qText").hidden = false;
-    document.getElementById("homeButton").hidden = false;
   };
 
   // fade animation upon RESET
@@ -375,10 +382,7 @@ export function Undertale() {
 
   const [animShards, setAnimShards] = useState(false);
   const [animGameOver, setAnimGameOver] = useState(false);
-
-  // flag
-  const ACTIVATE_GO_TXT = 0;
-
+  
   const [x_death_coord, setX] = useState(0);
   const [y_death_coord, setY] = useState(0);
 
@@ -466,7 +470,7 @@ export function Undertale() {
     testGameOver();
   }
 
-  function playGameOverMusic(){
+  function playGameOverMusic() {
     Determination.play();
     Determination.currentTime = 0;
     setTimeout(() => {
@@ -533,9 +537,7 @@ export function Undertale() {
         setTimeout(() => {
           setAnimGameOver(true);
           playGameOverMusic();
-          
         }, 2000);
-        
       }, 1800);
     }, 1000);
   }
@@ -544,7 +546,6 @@ export function Undertale() {
     setPage(2);
     setGameOver(true);
     testSoulBreak();
-    
   }
 
   return (
@@ -566,8 +567,6 @@ export function Undertale() {
               return (
                 /* final results */
                 <div>
-                  {(document.getElementById("qText").hidden = true)}
-                  {(document.getElementById("titleText").hidden = true)}
                   <br></br>
                   <br></br>
                   <div className="results">
@@ -654,7 +653,12 @@ export function Undertale() {
                   {(document.getElementById("titleText").hidden = true)}
                   {console.log(gameOver)}
 
-                  <h2 className={`gameOverTitle ${ animGameOver? "gameOverFade" : ""}`} id ="gOverTitle">
+                  <h2
+                    className={`gameOverTitle ${
+                      animGameOver ? "gameOverFade" : ""
+                    }`}
+                    id="gOverTitle"
+                  >
                     GAME
                     <br />
                     OVER
