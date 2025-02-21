@@ -25,6 +25,7 @@ export function Undertale() {
   }, [page]);
 
   const MAXHP = 20;
+
   const [healthPoints, setHP] = useState(MAXHP);
 
   // sound effects & music
@@ -276,48 +277,51 @@ export function Undertale() {
   const [totalRight, setTotal] = useState(questions.length);
 
   const answerPicked = (correct) => {
-    if (correct) {
-      // play "correct" sound effect
-
-      correctSFX.play();
-      correctSFX.currentTime = 0;
-
-      setScore(score + 1);
+    if (healthPoints - 1 == 0) {
+      //setPage(2);
+      startGameOver(true);
     } else {
-      // play "incorrect" sound effect
+      if (correct) {
+        correctSFX.play();
+        correctSFX.currentTime = 0;
+        setScore(score + 1);
+      } else {
+        incorrectSFX.play();
+        incorrectSFX.currentTime = 0;
 
-      incorrectSFX.play();
-      incorrectSFX.currentTime = 0;
+        startShakeAnim();
+        setTimeout(endShakeAnim, 250);
 
-      startShakeAnim();
-      setTimeout(endShakeAnim, 250);
+        setTotal(totalRight - 1);
 
-      setTotal(totalRight - 1);
-      setHP(healthPoints - 1);
-    }
+        var temp = healthPoints - 1;
 
-    if (currentQuestion + 1 < questions.length) {
-      setCurrentQuestion(currentQuestion + 1);
-      console.log(currentQuestion);
-    } else {
-      setPage(0);
-    }
+        setHP(temp);
 
-    // check if user has run out of health points
-    if (healthPoints == 0) {
-      setPage(2);
-      setGameOver(true);
-    } else {
-      // update the HP bar
+        console.log("temp");
+        console.log(temp);
 
-      var percentRight = (healthPoints / MAXHP) * 100;
+        var percentRight = (temp / MAXHP) * 100;
 
-      document.getElementById("healthPointBox").style.backgroundImage =
-        "linear-gradient(to right, yellow 0%, yellow " +
-        percentRight +
-        "%, red " +
-        (percentRight + 1) +
-        "%, red 100%)";
+        console.log("health points: ");
+        console.log(healthPoints);
+
+        console.log("percent right: ");
+        console.log(percentRight);
+
+        document.getElementById("healthPointBox").style.backgroundImage =
+          "linear-gradient(to right, yellow 0%, yellow " +
+          percentRight +
+          "%, red " +
+          (percentRight + 1) +
+          "%, red 100%)";
+      }
+
+      if (currentQuestion + 1 < questions.length) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        setPage(0);
+      }
     }
   };
 
@@ -382,7 +386,7 @@ export function Undertale() {
 
   const [animShards, setAnimShards] = useState(false);
   const [animGameOver, setAnimGameOver] = useState(false);
-  
+
   const [x_death_coord, setX] = useState(0);
   const [y_death_coord, setY] = useState(0);
 
@@ -449,23 +453,19 @@ export function Undertale() {
 
   // "types" lines with proper delays
   function typeGameOvrTxt() {
-    console.log("starting");
     firstLine(); // "You cannot give"
     setTimeout(secondLine, 1000); // "up just yet. . ."
     setTimeout(eraseLines, 5000);
     setTimeout(thirdLine, 7000); // "Player!"
     setTimeout(fourthLine, 8500); // "Stay determined. . ."
-    console.log("ending");
   }
 
   function startGameOver(event) {
-    let X = event.clientX;
-    let Y = event.clientY;
+    //let X = event.clientX;
+    //let Y = event.clientY;
 
-    console.log("x coord:" + X + ", y coord: " + Y);
-
-    setX(X);
-    setY(Y);
+    //setX(X);
+    //setY(Y);
 
     testGameOver();
   }
@@ -548,6 +548,15 @@ export function Undertale() {
     testSoulBreak();
   }
 
+
+  function getCoords(event){
+    let X = event.clientX;
+    let Y = event.clientY;
+
+    setX(X);
+    setY(Y);
+  }
+
   return (
     <>
       <div id="UT" className="undertale">
@@ -608,7 +617,7 @@ export function Undertale() {
                         <li key={answer.id}>
                           <h2
                             className="option"
-                            onClick={() => answerPicked(answer.correct)}
+                            onClick={() => [answerPicked(answer.correct), getCoords(event)]}
                           >
                             {answer.text}
                           </h2>
@@ -651,7 +660,6 @@ export function Undertale() {
                 <div id="gameOverDiv" className="cursorHide">
                   {(document.getElementById("qText").hidden = true)}
                   {(document.getElementById("titleText").hidden = true)}
-                  {console.log(gameOver)}
 
                   <h2
                     className={`gameOverTitle ${
